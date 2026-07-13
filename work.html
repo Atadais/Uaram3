@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Работа у нас · Uaram</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #faf8f5;
+      font-family: 'Inter', sans-serif;
+      color: #1c1c1a;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== HERO WITH FULLSCREEN BACKGROUND ===== */
+    .work-hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 2.5rem;
+      overflow: hidden;
+    }
+
+    .work-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><rect width="1600" height="900" fill="%23faf8f5"/><circle cx="400" cy="200" r="300" fill="%23e8f0e6" opacity="0.25"/><circle cx="1200" cy="600" r="400" fill="%23e8f0e6" opacity="0.12"/><ellipse cx="800" cy="450" rx="600" ry="350" fill="%23dce8da" opacity="0.04"/></svg>');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* ДЛЯ РАЗРАБОТЧИКА: Раскомментировать и заменить url для фонового фото на всю страницу */
+    /* .work-hero-bg {
+      background-image: url('team-work.jpg');
+      opacity: 0.08;
+    } */
+
+    .work-hero .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 4rem 0;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: #4a5e3f;
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 2.5rem;
+      transition: color 0.3s;
+    }
+
+    .back-link:hover {
+      color: #1c1c1a;
+    }
+
+    .work-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .work-hero .subtitle {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: #5a5650;
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .work-text p {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: #4a4540;
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+    }
+
+    .work-benefits {
+      list-style: none;
+      padding: 0;
+    }
+
+    .work-benefits li {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(74, 94, 63, 0.06);
+      font-weight: 300;
+      font-size: 1rem;
+      color: #4a4540;
+    }
+
+    .work-benefits li strong {
+      font-weight: 500;
+      color: #1c1c1a;
+    }
+
+    .work-image {
+      border-radius: 4px;
+      overflow: hidden;
+      min-height: 400px;
+      background: #d9d2c5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8a857e;
+      font-size: 0.8rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23d9d2c5"/><text x="50%" y="50%" font-family="Inter" font-size="11" fill="%234a5e3f" text-anchor="middle" dy=".3em" font-weight="300">Фото команды</text></svg>');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .work-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: #4a5e3f;
+      color: #faf8f5;
+      font-weight: 400;
+      font-size: 0.8rem;
+      padding: 0.9rem 3rem;
+      border-radius: 0;
+      text-decoration: none;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: all 0.4s ease;
+      border: 1px solid #4a5e3f;
+      margin-top: 1rem;
+    }
+
+    .btn-primary:hover {
+      background: #3a4e30;
+      border-color: #3a4e30;
+      transform: translateY(-2px);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 2.5rem 2.5rem;
+      background: #1c1c1a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      font-weight: 300;
+      font-size: 0.8rem;
+      color: #faf8f5;
+      margin-top: auto;
+    }
+
+    .footer .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #faf8f5;
+      font-weight: 700;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2.5rem;
+      margin: 0 auto;
+    }
+
+    .footer a {
+      color: #faf8f5;
+      text-decoration: none;
+      transition: color 0.3s;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .footer a:hover {
+      color: #4a5e3f;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 992px) {
+      .work-grid {
+        gap: 2.5rem;
+      }
+      .work-hero h1 {
+        font-size: 2.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .work-hero {
+        padding: 0 1.2rem;
+        min-height: auto;
+        padding-top: 80px;
+        padding-bottom: 60px;
+      }
+
+      .work-hero .container {
+        padding: 1rem 0 2rem;
+      }
+
+      .work-hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .work-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .work-image {
+        min-height: 260px;
+      }
+
+      .work-image img {
+        min-height: 260px;
+      }
+
+      .footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.2rem;
+        gap: 1.2rem;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .back-link {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .work-hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .work-hero .subtitle {
+        font-size: 1rem;
+      }
+
+      .work-text p {
+        font-size: 0.95rem;
+      }
+
+      .work-benefits li {
+        font-size: 0.9rem;
+        padding: 0.6rem 0;
+      }
+
+      .btn-primary {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem 2rem;
+        font-size: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== WORK HERO WITH FULLSCREEN BACKGROUND ===== -->
+  <section class="work-hero">
+    <!-- ===== ФОНОВОЕ ФОТО НА ВСЮ СТРАНИЦУ ===== -->
+    <div class="work-hero-bg"></div>
+
+    <div class="container">
+      <a href="index.html" class="back-link">← На главную</a>
+
+      <h1>Работа <span class="accent-green">у нас</span></h1>
+      <p class="subtitle">Присоединяйтесь к команде Uaram — месту, где создаётся гастрономическое вдохновение</p>
+
+      <div class="work-grid">
+        <div class="work-text">
+          <p>
+            Uaram — это не просто ресторан, это команда профессионалов, которые каждый день создают атмосферу уюта и гастрономического совершенства. Мы ищем талантливых, ответственных и вдохновлённых людей, готовых стать частью нашей семьи.
+          </p>
+          <p>
+            Мы ценим инициативу, уважаем традиции и всегда открыты к новым идеям. Если вы хотите работать в месте, где качество и забота о госте стоят на первом месте — мы ждём вас.
+          </p>
+
+          <ul class="work-benefits">
+            <li><strong>Стабильная занятость</strong> — официальное оформление и график работы</li>
+            <li><strong>Конкурентная оплата</strong> — достойное вознаграждение за ваш труд</li>
+            <li><strong>Дружный коллектив</strong> — атмосфера поддержки и профессионализма</li>
+            <li><strong>Карьерный рост</strong> — возможность развиваться внутри ресторана</li>
+            <li><strong>Питание</strong> — вкусные обеды от нашей команды</li>
+          </ul>
+
+          <a href="mailto:hr@uaram.ru" class="btn-primary">Отправить резюме</a>
+        </div>
+
+        <div class="work-image">
+          <!-- ДЛЯ РАЗРАБОТЧИКА: Вставить фото команды или атмосферы работы -->
+          <!-- <img src="team-photo.jpg" alt="Команда Uaram" /> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <span class="footer-brand">Uaram</span>
+    <div class="footer-links">
+      <a href="#">Instagram</a>
+      <a href="#">WhatsApp</a>
+      <a href="work.html">Работа у нас</a>
+    </div>
+  </footer>
+
+</body>
+</html>

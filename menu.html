@@ -1,0 +1,2767 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>Меню · Uaram</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #faf8f5;
+      font-family: 'Inter', sans-serif;
+      color: #1c1c1a;
+      line-height: 1.6;
+      padding-top: 80px;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* ===== ДЕКОРАТИВНЫЙ ФОН С ОЛИВКОВОЙ ВЕТКОЙ ===== */
+    body::before {
+      content: '';
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 400px;
+      height: 500px;
+      z-index: 0;
+      opacity: 0.06;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><path d="M350 480 Q320 400 340 350 Q360 300 330 260 Q300 220 270 200 Q240 180 200 190 Q160 200 130 170 Q100 140 80 100 Q60 60 70 30 Q80 0 60 10 Q40 20 30 50 Q20 80 40 120 Q60 160 90 190 Q120 220 160 240 Q200 260 250 270 Q300 280 340 310 Q380 340 390 380 Q400 420 380 460 Q370 490 350 480Z" fill="%234a5e3f"/><ellipse cx="340" cy="350" rx="18" ry="22" fill="%234a5e3f" transform="rotate(-20 340 350)"/><ellipse cx="280" cy="260" rx="14" ry="18" fill="%234a5e3f" transform="rotate(-10 280 260)"/><ellipse cx="200" cy="200" rx="16" ry="20" fill="%234a5e3f" transform="rotate(15 200 200)"/><ellipse cx="130" cy="150" rx="12" ry="16" fill="%234a5e3f" transform="rotate(25 130 150)"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: bottom right;
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 400px;
+      z-index: 0;
+      opacity: 0.04;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400"><path d="M50 50 Q80 20 130 40 Q180 60 220 30 Q260 0 280 30 Q300 60 270 100 Q240 140 200 170 Q160 200 130 230 Q100 260 80 300 Q60 340 40 330 Q20 320 30 280 Q40 240 60 200 Q80 160 70 120 Q60 80 50 50Z" fill="%234a5e3f"/><ellipse cx="200" cy="70" rx="14" ry="18" fill="%234a5e3f" transform="rotate(30 200 70)"/><ellipse cx="120" cy="120" rx="16" ry="20" fill="%234a5e3f" transform="rotate(10 120 120)"/><ellipse cx="80" cy="250" rx="12" ry="16" fill="%234a5e3f" transform="rotate(-15 80 250)"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: top left;
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 2.5rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-font {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .accent-green {
+      color: #4a5e3f;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid rgba(74, 94, 63, 0.1);
+      padding-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .section-sub {
+      color: #5a5650;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    /* ===== HEADER / NAVIGATION ===== */
+    .navbar {
+      padding: 1.4rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(250, 248, 245, 0.82);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(74, 94, 63, 0.06);
+      transition: all 0.4s ease;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+
+    .navbar.scrolled {
+      background: rgba(250, 248, 245, 0.94);
+      box-shadow: 0 4px 40px rgba(0,0,0,0.02);
+      padding: 0.8rem 2.5rem;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #4a5e3f;
+      letter-spacing: -0.02em;
+      transition: all 0.4s;
+    }
+
+    .navbar.scrolled .logo-text {
+      font-size: 1.4rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.8rem;
+      font-weight: 400;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      color: #3d3a35;
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: #4a5e3f;
+      transition: width 0.4s ease;
+    }
+
+    .nav-links a:hover {
+      color: #1c1c1a;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .burger-menu {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .burger-menu span {
+      display: block;
+      width: 26px;
+      height: 1.5px;
+      background: #1c1c1a;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ===== MENU NAVIGATION TABS ===== */
+    .menu-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 3rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(74, 94, 63, 0.06);
+      position: relative;
+    }
+
+    .menu-nav a {
+      display: inline-block;
+      padding: 0.6rem 1.8rem;
+      background: transparent;
+      border: 1px solid rgba(74, 94, 63, 0.1);
+      color: #5a5650;
+      text-decoration: none;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      transition: all 0.4s ease;
+      border-radius: 0;
+      font-weight: 400;
+      position: relative;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: #4a5e3f;
+      transition: width 0.4s ease;
+    }
+
+    .menu-nav a:hover::after,
+    .menu-nav a.active::after {
+      width: 100%;
+    }
+
+    .menu-nav a:hover {
+      border-color: #4a5e3f;
+      color: #1c1c1a;
+      background: rgba(74, 94, 63, 0.02);
+    }
+
+    .menu-nav a.active {
+      border-color: #4a5e3f;
+      color: #1c1c1a;
+      background: rgba(74, 94, 63, 0.04);
+    }
+
+    /* ===== CATEGORY ===== */
+    .category {
+      margin-bottom: 4.5rem;
+      scroll-margin-top: 90px;
+    }
+
+    .category-title {
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+      color: #1c1c1a;
+      letter-spacing: -0.01em;
+    }
+
+    .category-sub {
+      font-size: 0.7rem;
+      color: #4a5e3f;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 300;
+      margin-bottom: 1.8rem;
+    }
+
+    .sub-category {
+      margin-top: 2.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+      color: #4a5e3f;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      border-left: 3px solid #4a5e3f;
+      padding-left: 1.2rem;
+    }
+
+    /* ===== MENU GRID ===== */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    .menu-card {
+      background: #faf8f5;
+      border-radius: 6px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(74, 94, 63, 0.04);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.01);
+    }
+
+    .menu-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
+      border-color: rgba(74, 94, 63, 0.08);
+    }
+
+    .menu-card-image {
+      width: 100%;
+      height: 220px;
+      background: #e8e2d8;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .menu-card-image .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8a857e;
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: #e8e2d8;
+    }
+
+    .menu-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .menu-card-body {
+      padding: 1.2rem 1.5rem 1.5rem;
+    }
+
+    .menu-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .menu-card-name {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #1c1c1a;
+    }
+
+    .menu-card-price {
+      font-weight: 400;
+      color: #4a5e3f;
+      white-space: nowrap;
+      font-size: 1rem;
+    }
+
+    .menu-card-desc {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: #6b6560;
+      line-height: 1.5;
+      margin-top: 0.2rem;
+    }
+
+    /* ===== DRINKS (BAR) ===== */
+    .drinks-section {
+      margin-top: 2rem;
+    }
+
+    .drink-group {
+      margin-bottom: 3.5rem;
+    }
+
+    .drink-group-title {
+      font-weight: 500;
+      font-size: 1.2rem;
+      color: #1c1c1a;
+      margin-bottom: 1.2rem;
+      border-bottom: 2px solid rgba(74, 94, 63, 0.06);
+      padding-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .drink-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .drink-card {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 0.8rem 1.2rem;
+      background: rgba(250, 248, 245, 0.5);
+      border: 1px solid rgba(74, 94, 63, 0.04);
+      transition: all 0.3s ease;
+      border-radius: 4px;
+    }
+
+    .drink-card:hover {
+      background: rgba(250, 248, 245, 0.9);
+      border-color: rgba(74, 94, 63, 0.12);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.02);
+    }
+
+    .drink-card-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 4px;
+      background: #e8e2d8;
+      flex-shrink: 0;
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .drink-card-image .drink-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8a857e;
+      font-size: 0.4rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: #e8e2d8;
+      border-radius: 4px;
+    }
+
+    .drink-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .drink-card-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .drink-card-info .drink-name {
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: #1c1c1a;
+    }
+
+    .drink-card-info .drink-desc {
+      font-size: 0.7rem;
+      color: #6b6560;
+      font-weight: 300;
+    }
+
+    .drink-card .drink-price {
+      font-weight: 400;
+      color: #4a5e3f;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .drink-note {
+      font-size: 0.72rem;
+      color: #6b6560;
+      font-weight: 300;
+      margin-left: 0.3rem;
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 40px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      max-width: 70vw;
+      max-height: 80vh;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+      cursor: default;
+      position: relative;
+      background: #faf8f5;
+    }
+
+    .lightbox-content img {
+      width: 100%;
+      height: 100%;
+      max-width: 70vw;
+      max-height: 80vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -44px;
+      right: 0;
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 2rem;
+      cursor: pointer;
+      transition: color 0.3s;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+    }
+
+    .lightbox-close:hover {
+      color: #fff;
+    }
+
+    /* ===== КНОПКА НАВЕРХ ===== */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 999;
+      background: #4a5e3f;
+      color: #faf8f5;
+      border: none;
+      padding: 14px 18px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.4s ease;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      background: #3a4e30;
+      transform: translateY(-4px);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 2.5rem 2.5rem;
+      background: #1c1c1a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      font-weight: 300;
+      font-size: 0.8rem;
+      color: #faf8f5;
+    }
+
+    .footer .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #faf8f5;
+      font-weight: 700;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2.5rem;
+      margin: 0 auto;
+    }
+
+    .footer a {
+      color: #faf8f5;
+      text-decoration: none;
+      transition: color 0.3s;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .footer a:hover {
+      color: #4a5e3f;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1200px) {
+      .menu-nav a {
+        padding: 0.6rem 1.4rem;
+        font-size: 0.7rem;
+        min-height: 40px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .navbar {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+      .nav-links {
+        gap: 1.8rem;
+        font-size: 0.7rem;
+      }
+      .container {
+        padding: 1.5rem 1.5rem 3rem;
+      }
+      .menu-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+      .drink-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      }
+      body::before {
+        width: 250px;
+        height: 350px;
+        opacity: 0.04;
+      }
+      body::after {
+        width: 200px;
+        height: 300px;
+        opacity: 0.03;
+      }
+      .lightbox-content {
+        max-width: 80vw;
+        max-height: 75vh;
+      }
+      .lightbox-content img {
+        max-width: 80vw;
+        max-height: 75vh;
+      }
+      .menu-nav a {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.7rem;
+        min-height: 38px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
+
+      .navbar {
+        padding: 1rem 1.2rem;
+        background: rgba(250, 248, 245, 0.95);
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: rgba(250, 248, 245, 0.98);
+        backdrop-filter: blur(12px);
+        padding: 1.5rem 0;
+        gap: 1.2rem;
+        border-top: 1px solid rgba(74, 94, 63, 0.06);
+        margin-top: 0.8rem;
+        font-size: 0.85rem;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 0.3rem 0;
+      }
+
+      .burger-menu {
+        display: flex;
+      }
+
+      .logo-text {
+        font-size: 1.5rem;
+      }
+
+      .container {
+        padding: 1rem 1.2rem 2rem;
+      }
+
+      .section-title {
+        font-size: 2.2rem;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .menu-card-image {
+        height: 150px;
+      }
+
+      .menu-card-body {
+        padding: 0.8rem 1rem 1rem;
+      }
+
+      .menu-card-name {
+        font-size: 0.9rem;
+      }
+
+      .menu-card-price {
+        font-size: 0.85rem;
+      }
+
+      .menu-card-desc {
+        font-size: 0.75rem;
+      }
+
+      .drink-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .drink-card {
+        padding: 0.6rem 1rem;
+        gap: 0.8rem;
+      }
+
+      .drink-card-image {
+        width: 50px;
+        height: 50px;
+      }
+
+      .drink-card-info .drink-name {
+        font-size: 0.85rem;
+      }
+
+      .category-title {
+        font-size: 1.6rem;
+      }
+
+      /* ===== КНОПКИ НАВИГАЦИИ МЕНЮ НА СМАРТФОНАХ ===== */
+      .menu-nav {
+        gap: 0.5rem;
+        justify-content: center;
+        padding-bottom: 1rem;
+      }
+
+      .menu-nav a {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.06em;
+        min-height: 48px;
+        min-width: 60px;
+        border-radius: 0;
+        border-color: rgba(74, 94, 63, 0.08);
+        flex: 0 1 auto;
+      }
+
+      .menu-nav a::after {
+        bottom: 0;
+        height: 2px;
+      }
+
+      .menu-nav a:hover,
+      .menu-nav a.active {
+        border-color: #4a5e3f;
+        background: rgba(74, 94, 63, 0.04);
+      }
+
+      .lightbox-content {
+        max-width: 90vw;
+        max-height: 60vh;
+      }
+      .lightbox-content img {
+        max-width: 90vw;
+        max-height: 60vh;
+      }
+      .lightbox {
+        padding: 20px;
+      }
+      .lightbox-close {
+        top: -36px;
+        font-size: 1.6rem;
+      }
+
+      .footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.2rem;
+        gap: 1.2rem;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 14px;
+        font-size: 0.8rem;
+      }
+
+      body::before {
+        width: 150px;
+        height: 200px;
+        opacity: 0.03;
+      }
+      body::after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar {
+        padding: 0.8rem 1rem;
+      }
+
+      .logo-text {
+        font-size: 1.2rem;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-card-image {
+        height: 200px;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .menu-nav {
+        gap: 0.4rem;
+      }
+
+      .menu-nav a {
+        padding: 0.6rem 0.9rem;
+        font-size: 0.75rem;
+        min-height: 44px;
+        min-width: 50px;
+        letter-spacing: 0.04em;
+      }
+
+      .lightbox-content {
+        max-width: 95vw;
+        max-height: 50vh;
+      }
+      .lightbox-content img {
+        max-width: 95vw;
+        max-height: 50vh;
+      }
+
+      .back-to-top {
+        bottom: 16px;
+        right: 16px;
+        padding: 8px 12px;
+        font-size: 0.7rem;
+      }
+
+      body::before {
+        width: 100px;
+        height: 150px;
+        opacity: 0.03;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header class="navbar" id="navbar">
+    <a href="index.html" class="logo-wrapper">
+      <span class="logo-text">Uaram</span>
+    </a>
+
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Главная</a>
+      <a href="#" style="color: #4a5e3f; font-weight: 500;">Меню</a>
+      <a href="index.html#about">О нас</a>
+      <a href="index.html#interior">Интерьер</a>
+      <a href="reviews.html">Отзывы</a>
+      <a href="index.html#contacts">Контакты</a>
+    </div>
+
+    <button class="burger-menu" id="burgerBtn" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="container">
+
+    <h1 class="section-title">Меню <span class="accent-green">Uaram</span></h1>
+    <p class="section-sub">Кавказская кухня в лучших традициях. Каждое блюдо — страница вашего гастрономического романа.</p>
+
+    <!-- ===== MENU NAVIGATION ===== -->
+    <div class="menu-nav">
+      <a href="#breakfast">Завтраки</a>
+      <a href="#soups">Первые блюда</a>
+      <a href="#salads">Салаты</a>
+      <a href="#main">Вторые блюда</a>
+      <a href="#pizza">Пицца</a>
+      <a href="#fastfood">Фаст Фуд</a>
+      <a href="#national">Национальное</a>
+      <a href="#desserts">Десерты</a>
+      <a href="#sauces">Гарниры</a>
+      <a href="#bar">Бар</a>
+    </div>
+
+    <!-- ===== ЗАВТРАКИ ===== -->
+    <div class="category" id="breakfast">
+      <h2 class="category-title">Завтраки</h2>
+      <div class="category-sub">Начните день с удовольствия</div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Овсяная каша с ягодами</span>
+              <span class="menu-card-price">230</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Финиковая каша</span>
+              <span class="menu-card-price">290</span>
+            </div>
+            <div class="menu-card-desc">лепешка, финики, банан, гауда, греческий йогурт, мед</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Шакшука в томатном соусе</span>
+              <span class="menu-card-price">320</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Шакшука в сливочном соусе</span>
+              <span class="menu-card-price">320</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Английский завтрак</span>
+              <span class="menu-card-price">650</span>
+            </div>
+            <div class="menu-card-desc">сосиски, хлеб сэндвич, помидоры розовые, фасоль красная, картофель по-деревенски, кетчуп, кинза</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Турецкий завтрак</span>
+              <span class="menu-card-price">560</span>
+            </div>
+            <div class="menu-card-desc">яйца в сливочном соусе, сосиски, хлеб сэндвич, сыр копченый, мед, помидоры, огурцы, маслины, евромикс, каймак</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Фирменный завтрак</span>
+              <span class="menu-card-price">650</span>
+            </div>
+            <div class="menu-card-desc">говядина деликатесная, яйцо, картофель бейби, евромикс, хлеб сэндвич, соус сальса</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Завтрак Uaram</span>
+              <span class="menu-card-price">420</span>
+            </div>
+            <div class="menu-card-desc">лакумы, чай калмыцкий, сыр кабардинский</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ПЕРВЫЕ БЛЮДА ===== -->
+    <div class="category" id="soups">
+      <h2 class="category-title">Первые блюда</h2>
+      <div class="category-sub">Согревающие традиции</div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Куриный суп</span>
+              <span class="menu-card-price">340</span>
+            </div>
+            <div class="menu-card-desc">лапша, куриное филе, домашний бульон, яйцо перепелиное, укроп</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Чечевичный крем суп</span>
+              <span class="menu-card-price">330</span>
+            </div>
+            <div class="menu-card-desc">чечевица, картофель, морковь, цукини, сливки, лук, лимон, сухари, мята</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Шурпа с говядиной</span>
+              <span class="menu-card-price">450</span>
+            </div>
+            <div class="menu-card-desc">говядина, картофель, морковь, укроп</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Том ям</span>
+              <span class="menu-card-price">610</span>
+            </div>
+            <div class="menu-card-desc">креветки, кальмар, семга, шампиньоны, черри, рис, лайм, кинза</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-category">Национальное</div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Іэшры1</span>
+              <span class="menu-card-price">430</span>
+            </div>
+            <div class="menu-card-desc">фасоль красная, кукуруза белая, вяленая баранина, сыр копченый, сливки, молоко</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Хьэнтхъупс</span>
+              <span class="menu-card-price">210</span>
+            </div>
+            <div class="menu-card-desc">суп из пшенки</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== САЛАТЫ ===== -->
+    <div class="category" id="salads">
+      <h2 class="category-title">Салаты</h2>
+      <div class="category-sub">Свежесть и гармония</div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Свежий salad</span>
+              <span class="menu-card-price">340</span>
+            </div>
+            <div class="menu-card-desc">огурцы, помидоры розовые, перец болгарский, лук красный, масло оливковое</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Греческий салат</span>
+              <span class="menu-card-price">500</span>
+            </div>
+            <div class="menu-card-desc">помидоры розовые, огурцы, перец болгарский, лук красный, евромикс, сыр фетакса, маслины, масло оливковое, соус песто, лимон</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Цезарь с курицей</span>
+              <span class="menu-card-price">460</span>
+            </div>
+            <div class="menu-card-desc">куриное филе, пекинская капуста, соус цезарь, черри, сыр пармезан, яйцо перепелиное, сухари</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Цезарь с креветками</span>
+              <span class="menu-card-price">520</span>
+            </div>
+            <div class="menu-card-desc">креветки, романо, соус цезарь, черри, сыр пармезан, яйцо перепелиное, сухари</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Салат с теплым баклажаном</span>
+              <span class="menu-card-price">540</span>
+            </div>
+            <div class="menu-card-desc">евромикс, кисло-сладкий соус, кинза, баклажаны, черри, сыр творожный, кунжут</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Теплый салат с говядиной</span>
+              <span class="menu-card-price">520</span>
+            </div>
+            <div class="menu-card-desc">говядина, соус ореховый, соус песто, евромикс, картофель бейби, фасоль, пармезан, черри</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Салат с бурратой</span>
+              <span class="menu-card-price">650</span>
+            </div>
+            <div class="menu-card-desc">сыр буррата, микс салата, помидоры черри, соус песто, кедровые орехи</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Салат с говяжьим языком</span>
+              <span class="menu-card-price">480</span>
+            </div>
+            <div class="menu-card-desc">говяжий язык, пекинская капуста, помидоры розовые, фасоль, сыр голландский, майонез</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ВТОРЫЕ БЛЮДА ===== -->
+    <div class="category" id="main">
+      <h2 class="category-title">Вторые блюда</h2>
+      <div class="category-sub">Горячие хиты</div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Жаркое с курицей и грибами</span>
+              <span class="menu-card-price">520</span>
+            </div>
+            <div class="menu-card-desc">картофель, куриное филе, болгарский перец, шампиньоны, сливки, черри, лук</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Жаркое с копченой говядиной</span>
+              <span class="menu-card-price">590</span>
+            </div>
+            <div class="menu-card-desc">картофель, говядина копченая, сливки, лук, черри, перец болгарский, говяжий бульон</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Бефстроганов</span>
+              <span class="menu-card-price">630</span>
+            </div>
+            <div class="menu-card-desc">говядина, шампиньоны, лук, черри, сливки, огурцы соленые, укроп, картофельное пюре</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Куриная грудка под ореховым соусом</span>
+              <span class="menu-card-price">670</span>
+            </div>
+            <div class="menu-card-desc">куриное филе, баклажаны, перец болгарский, сыр моцарелла, ореховый соус, черри, пюре</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Медальоны</span>
+              <span class="menu-card-price">1210</span>
+            </div>
+            <div class="menu-card-desc">говядина, шампиньоны, чеснок, черри, сливки, картофельное пюре</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Фетучини с курицей и грибами</span>
+              <span class="menu-card-price">490</span>
+            </div>
+            <div class="menu-card-desc">паста, куриное филе, сливки, пармезан, черри, шампиньоны</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Фетучини с креветками</span>
+              <span class="menu-card-price">520</span>
+            </div>
+            <div class="menu-card-desc">паста, креветки, сливки, пармезан, черри, соевый соус, базилик</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Карп жареный</span>
+              <span class="menu-card-price">650</span>
+            </div>
+            <div class="menu-card-desc">карп, черри, евромикс, лимон</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Костный мозг</span>
+              <span class="menu-card-price">590</span>
+            </div>
+            <div class="menu-card-desc">костный мозг с гренками и картофелем</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Антрекот копченый</span>
+              <span class="menu-card-price">1350</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Хачапури</span>
+              <span class="menu-card-price">330</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ПИЦЦА ===== -->
+    <div class="category" id="pizza">
+      <h2 class="category-title">Пицца</h2>
+      <div class="category-sub">Итальянская классика</div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Пицца Маргарита</span>
+              <span class="menu-card-price">470</span>
+            </div>
+            <div class="menu-card-desc">соус помодоро, сыр моцарелла, помидоры</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Пицца куриная BBQ</span>
+              <span class="menu-card-price">560</span>
+            </div>
+            <div class="menu-card-desc">соус помодоро, сыр моцарелла, куриное филе, помидоры, bbq</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Пицца пепперони</span>
+              <span class="menu-card-price">590</span>
+            </div>
+            <div class="menu-card-desc">соус помодоро, сыр моцарелла, колбаса</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Пицца Рио</span>
+              <span class="menu-card-price">750</span>
+            </div>
+            <div class="menu-card-desc">соус спайси, соус унаги, сыр моцарелла, креветки, семга, масаго, лук зеленый</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Пицца цезарь</span>
+              <span class="menu-card-price">620</span>
+            </div>
+            <div class="menu-card-desc">соус цезарь, сыр моцарелла, пекинская капуста, куриное филе, помидоры черри, сыр пармезан</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Пицца 4 сыра</span>
+              <span class="menu-card-price">630</span>
+            </div>
+            <div class="menu-card-desc">соус сливочный, сыр моцарелла, мраморный сыр, сыр пармезан, сыр голландский</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Пицца ассорти</span>
+              <span class="menu-card-price">670</span>
+            </div>
+            <div class="menu-card-desc">соус помодоро, сыр моцарелла, салями, куриное филе, колбаса, ветчина индейки, помидоры, черри, шампиньоны</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ФАСТФУД ===== -->
+    <div class="category" id="fastfood">
+      <h2 class="category-title">Фаст Фуд и Закуски</h2>
+      <div class="sub-category">Фаст Фуд</div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Сэндвич с говядиной деликатесной</span>
+              <span class="menu-card-price">410</span>
+            </div>
+            <div class="menu-card-desc">сэндвич, огурцы, помидоры, говядина деликатесная, микс салата, соус, картофель фри</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Сэндвич с индейкой</span>
+              <span class="menu-card-price">390</span>
+            </div>
+            <div class="menu-card-desc">сэндвич, огурцы, помидоры, ветчина индейки, микс салата, соус, картофель фри</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Бургер говяжий</span>
+              <span class="menu-card-price">500</span>
+            </div>
+            <div class="menu-card-desc">булочка с кунжутом, говядина, помидоры, огурцы соленые, лук красный, лук жареный, микс салата, сыр, соус для бургера, картофель фри</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Бургер куриный</span>
+              <span class="menu-card-price">460</span>
+            </div>
+            <div class="menu-card-desc">булочка с кунжутом, куриное филе, помидоры, огурцы, микс салата, сыр, соус для бургера, картофель фри</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Бургер фирменный</span>
+              <span class="menu-card-price">600</span>
+            </div>
+            <div class="menu-card-desc">булочка с кунжутом, котлета говяжья, говядина деликатесная, помидоры, огурцы, микс салата, лук красный, сыр, соус для бургера, картофель фри</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-category">Закуски</div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Овощное ассорти</span>
+              <span class="menu-card-price">550</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Крылья куриные (6шт)</span>
+              <span class="menu-card-price">470</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Наггетсы (6шт)</span>
+              <span class="menu-card-price">300</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Сырные палочки (8шт)</span>
+              <span class="menu-card-price">300</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== НАЦИОНАЛЬНЫЕ ===== -->
+    <div class="category" id="national">
+      <h2 class="category-title">Национальные блюда</h2>
+      <div class="category-sub">Аутентичные рецепты Кавказа</div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Тхьэмщlыгъуныбэ / сохта с пастой</span>
+              <span class="menu-card-price">470</span>
+            </div>
+            <div class="menu-card-desc">домашняя колбаса с пастой, болгарский перец, лук, тузлук</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Баранина с овощами</span>
+              <span class="menu-card-price">710</span>
+            </div>
+            <div class="menu-card-desc">баранина, лук репчатый, перец болгарский, картофельное пюре</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Лыбжьэ традиционное</span>
+              <span class="menu-card-price">710</span>
+            </div>
+            <div class="menu-card-desc">говядина, лук, паста из пшенной крупы</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Джэдлыбжьэ</span>
+              <span class="menu-card-price">590</span>
+            </div>
+            <div class="menu-card-desc">куриное бедро с ножкой, сливочно-чесночный соус, паста</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Джэшлыбжьэ</span>
+              <span class="menu-card-price">390</span>
+            </div>
+            <div class="menu-card-desc">фасоль красная, лук репчатый, сливки, паста из пшенной крупы, сливочное масло</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Лягур с пастой</span>
+              <span class="menu-card-price">570</span>
+            </div>
+            <div class="menu-card-desc">копченое мясо с пастой из пшенной крупы с болгарским перцем и луком</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Лягур лыбжьэ с пастой</span>
+              <span class="menu-card-price">580</span>
+            </div>
+            <div class="menu-card-desc">копченое мясо в сливочном соусе с пастой из пшенной крупы</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Говяжий рубец / ныбапхъэ</span>
+              <span class="menu-card-price">470</span>
+            </div>
+            <div class="menu-card-desc">отваренный говяжий желудок с пастой из пшенной крупы и тузлуком</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Жэрумэ / жёрме</span>
+              <span class="menu-card-price">690</span>
+            </div>
+            <div class="menu-card-desc">жэрумэ/жёрме, лук репчатый, тузлук, паста из пшенной крупы</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Говяжий язык в сливочном соусе</span>
+              <span class="menu-card-price">610</span>
+            </div>
+            <div class="menu-card-desc">говяжий язык, мамалыга, сливочный соус</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Говяжий язык с пюре</span>
+              <span class="menu-card-price">610</span>
+            </div>
+            <div class="menu-card-desc">говяжий язык, лук репчатый, картофельное пюре, перец болгарский</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Бедро индейки</span>
+              <span class="menu-card-price">750</span>
+            </div>
+            <div class="menu-card-desc">бедро индейки, мамалыга, чесночный соус на бульоне</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Мэлыщхъэ (баранья голова)</span>
+              <span class="menu-card-price">1800</span>
+            </div>
+            <div class="menu-card-desc">баранья голова и ножки со свежими овощами, тузлук, паста</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Ассорти Uaram</span>
+              <span class="menu-card-price">6000</span>
+            </div>
+            <div class="menu-card-desc">баранья голова, бараньи ноги, говяжий рубец, тхьэмщlыгъуныбэ, жэрумэ, говяжий язык, бедро индейки, овощи свежие, тузлук</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Хычины с картошкой и сыром</span>
+              <span class="menu-card-price">190</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Хычины с зеленью и сыром</span>
+              <span class="menu-card-price">200</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Далян с картошкой и сыром</span>
+              <span class="menu-card-price">360</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ДЕСЕРТЫ ===== -->
+    <div class="category" id="desserts">
+      <h2 class="category-title">Десерты</h2>
+      <div class="category-sub">Сладкая нота</div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Хьэлыуэ (халва из пшенной муки)</span>
+              <span class="menu-card-price">130</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Прунж lэфl Uaram (сладкий рис)</span>
+              <span class="menu-card-price">640</span>
+            </div>
+            <div class="menu-card-desc">рис, мороженое, сливочный сыр, изюм, виноград, капрон, зэкlэрыс, хьэлыуэ</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Зэкlэрыс (чак-чак)</span>
+              <span class="menu-card-price">90</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ГАРНИРЫ ===== -->
+    <div class="category" id="sauces">
+      <h2 class="category-title">Гарниры и соусы</h2>
+      <div class="sub-category">Гарниры</div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Кабардинская паста</span>
+              <span class="menu-card-price">130</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Рис</span>
+              <span class="menu-card-price">210</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Картошель по-деревенски</span>
+              <span class="menu-card-price">190</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Картошель фри</span>
+              <span class="menu-card-price">190</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Картофельное пюре</span>
+              <span class="menu-card-price">200</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-category">Соусы</div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Сметана</span>
+              <span class="menu-card-price">70</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Сальса</span>
+              <span class="menu-card-price">70</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Сырный</span>
+              <span class="menu-card-price">70</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Цезарь</span>
+              <span class="menu-card-price">70</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Кетчуп</span>
+              <span class="menu-card-price">70</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Гриль соус</span>
+              <span class="menu-card-price">70</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Горчица</span>
+              <span class="menu-card-price">70</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Барбекю</span>
+              <span class="menu-card-price">70</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-category">Дополнительно</div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Варенье (100г)</span>
+              <span class="menu-card-price">160</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Аджика (150г)</span>
+              <span class="menu-card-price">160</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Лечо (150г)</span>
+              <span class="menu-card-price">160</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Домашняя булочка</span>
+              <span class="menu-card-price">30</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image" data-photo="">
+            <div class="photo-placeholder">Фото блюда</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <span class="menu-card-name">Лакум</span>
+              <span class="menu-card-price">50</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== БАР ===== -->
+    <div class="category drinks-section" id="bar">
+      <h2 class="category-title">Бар</h2>
+      <div class="category-sub">Напитки для настроения</div>
+
+      <div class="drink-group">
+        <div class="drink-group-title">Кофе</div>
+        <div class="drink-grid">
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Эспрессо</span>
+            </div>
+            <span class="drink-price">200</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Американо</span>
+            </div>
+            <span class="drink-price">200</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Флэт уайт</span>
+            </div>
+            <span class="drink-price">200</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Капучино</span>
+            </div>
+            <span class="drink-price">200 / 220</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Латте</span>
+            </div>
+            <span class="drink-price">220</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Раф</span>
+            </div>
+            <span class="drink-price">280</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Айс-латте</span>
+            </div>
+            <span class="drink-price">220</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Фраппе</span>
+            </div>
+            <span class="drink-price">260</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Бамбл апельсин</span>
+            </div>
+            <span class="drink-price">250</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Эспрессо-тоник</span>
+            </div>
+            <span class="drink-price">200</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Какао</span>
+            </div>
+            <span class="drink-price">200</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="drink-group">
+        <div class="drink-group-title">Домашние чаи <span class="drink-note">(мал. / бол.)</span></div>
+        <div class="drink-grid">
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Калмыцкий чай</span>
+            </div>
+            <span class="drink-price">150 / 350</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Облепиховый</span>
+            </div>
+            <span class="drink-price">150 / 320</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Имбирь-цитрус</span>
+            </div>
+            <span class="drink-price">150 / 350</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Смородина-апельсин</span>
+            </div>
+            <span class="drink-price">150 / 350</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Малина-вишня</span>
+            </div>
+            <span class="drink-price">150 / 350</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="drink-group">
+        <div class="drink-group-title">Заварные чаи</div>
+        <div class="drink-grid">
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Черный</span>
+            </div>
+            <span class="drink-price">220</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Зеленый</span>
+            </div>
+            <span class="drink-price">220</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Зеленый с жасмином</span>
+            </div>
+            <span class="drink-price">220</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Молочный улун</span>
+            </div>
+            <span class="drink-price">220</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Черный с чабрецом</span>
+            </div>
+            <span class="drink-price">220</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Черный с бергамотом</span>
+            </div>
+            <span class="drink-price">220</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Наглый фрукт</span>
+            </div>
+            <span class="drink-price">220</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="drink-group">
+        <div class="drink-group-title">Национальные напитки</div>
+        <div class="drink-grid">
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Серчэ</span>
+            </div>
+            <span class="drink-price">190 / 390</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Мэхъсымэ (безалкогольный)</span>
+            </div>
+            <span class="drink-price">190 / 390</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Айран</span>
+            </div>
+            <span class="drink-price">70</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="drink-group">
+        <div class="drink-group-title">Свежевыжатые соки</div>
+        <div class="drink-grid">
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Апельсиновый фреш</span>
+            </div>
+            <span class="drink-price">270</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Грейпфрутовый фреш</span>
+            </div>
+            <span class="drink-price">270</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="drink-group">
+        <div class="drink-group-title">Смузи</div>
+        <div class="drink-grid">
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Маракуйя-лайм</span>
+            </div>
+            <span class="drink-price">290</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Клубника-банан</span>
+            </div>
+            <span class="drink-price">290</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Черника-вишня</span>
+            </div>
+            <span class="drink-price">290</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Киви-манго</span>
+            </div>
+            <span class="drink-price">290</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Ягодный</span>
+            </div>
+            <span class="drink-price">320</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Яблоко-шпинат</span>
+            </div>
+            <span class="drink-price">320</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="drink-group">
+        <div class="drink-group-title">Милкшейки</div>
+        <div class="drink-grid">
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Ванильно-банановый</span>
+            </div>
+            <span class="drink-price">250</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Шоколадно-банановый</span>
+            </div>
+            <span class="drink-price">250</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Клубничный</span>
+            </div>
+            <span class="drink-price">250</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Oreo</span>
+            </div>
+            <span class="drink-price">280</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="drink-group">
+        <div class="drink-group-title">Лимонады <span class="drink-note">(мал. / бол.)</span></div>
+        <div class="drink-grid">
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Манго-маракуйя</span>
+            </div>
+            <span class="drink-price">220 / 460</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Мохито классика</span>
+            </div>
+            <span class="drink-price">220 / 460</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Мохито клубника</span>
+            </div>
+            <span class="drink-price">220 / 460</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Лесные ягоды</span>
+            </div>
+            <span class="drink-price">220 / 460</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Яблоко-ананас</span>
+            </div>
+            <span class="drink-price">220 / 460</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Киви-фейхоа</span>
+            </div>
+            <span class="drink-price">220 / 460</span>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-card-image" data-photo="">
+              <div class="drink-photo-placeholder">Фото</div>
+            </div>
+            <div class="drink-card-info">
+              <span class="drink-name">Санрайз</span>
+            </div>
+            <span class="drink-price">220 / 460</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== КНОПКА НАВЕРХ ===== -->
+  <button class="back-to-top" id="backToTop">↑ Наверх</button>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <span class="footer-brand">Uaram</span>
+    <div class="footer-links">
+      <a href="#">Instagram</a>
+      <a href="#">WhatsApp</a>
+      <a href="work.html">Работа у нас</a>
+    </div>
+  </footer>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose">✕</button>
+      <img src="" alt="Uaram" id="lightboxImage" />
+    </div>
+  </div>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // ===== BURGER MENU =====
+    const burger = document.getElementById('burgerBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // ===== NAVBAR SCROLL =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > 30) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // ===== MENU NAVIGATION ACTIVE LINK =====
+    const menuNavLinks = document.querySelectorAll('.menu-nav a');
+    const categories = document.querySelectorAll('.category');
+
+    function updateActiveLink() {
+      let current = '';
+      categories.forEach(category => {
+        const rect = category.getBoundingClientRect();
+        if (rect.top <= 120) {
+          current = category.id;
+        }
+      });
+
+      menuNavLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveLink);
+    window.addEventListener('load', updateActiveLink);
+
+    // ===== SMOOTH SCROLL =====
+    document.querySelectorAll('.menu-nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId !== '#') {
+          const target = document.querySelector(targetId);
+          if (target) {
+            const offset = 90;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    });
+
+    // ===== LIGHTBOX =====
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    function openLightbox(src, alt) {
+      if (src && src.trim() !== '') {
+        lightboxImage.src = src;
+        lightboxImage.alt = alt || 'Uaram';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.menu-card-image').forEach(el => {
+      el.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const photo = this.getAttribute('data-photo');
+        if (photo && photo.trim() !== '') {
+          openLightbox(photo, 'Блюдо Uaram');
+        }
+      });
+    });
+
+    document.querySelectorAll('.drink-card-image').forEach(el => {
+      el.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const photo = this.getAttribute('data-photo');
+        if (photo && photo.trim() !== '') {
+          openLightbox(photo, 'Напиток Uaram');
+        }
+      });
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // ===== КНОПКА НАВЕРХ =====
+    const backToTopBtn = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+
+</body>
+  </html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Отзывы · Uaram</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #faf8f5;
+      font-family: 'Inter', sans-serif;
+      color: #1c1c1a;
+      line-height: 1.6;
+      padding-top: 80px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 2.5rem 4rem;
+      flex: 1;
+    }
+
+    /* ===== HEADER ===== */
+    .navbar {
+      padding: 1.4rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(250, 248, 245, 0.82);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(74, 94, 63, 0.06);
+      transition: all 0.4s ease;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+
+    .navbar.scrolled {
+      background: rgba(250, 248, 245, 0.94);
+      box-shadow: 0 4px 40px rgba(0,0,0,0.02);
+      padding: 0.8rem 2.5rem;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #4a5e3f;
+      letter-spacing: -0.02em;
+      transition: all 0.4s;
+    }
+
+    .navbar.scrolled .logo-text {
+      font-size: 1.4rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.8rem;
+      font-weight: 400;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      color: #3d3a35;
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: #4a5e3f;
+      transition: width 0.4s ease;
+    }
+
+    .nav-links a:hover {
+      color: #1c1c1a;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .burger-menu {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .burger-menu span {
+      display: block;
+      width: 26px;
+      height: 1.5px;
+      background: #1c1c1a;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      border-bottom: 2px solid rgba(74, 94, 63, 0.1);
+      padding-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .accent-green {
+      color: #4a5e3f;
+    }
+
+    .page-sub {
+      color: #5a5650;
+      font-weight: 300;
+      margin-top: 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    /* ===== REVIEWS WIDGET ===== */
+    .reviews-wrapper {
+      margin-top: 2.5rem;
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid rgba(74, 94, 63, 0.06);
+      box-shadow: 0 4px 40px rgba(0, 0, 0, 0.01);
+      background: #faf8f5;
+    }
+
+    /* Декоративный элемент сверху */
+    .reviews-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #4a5e3f, #8aa37e, #4a5e3f);
+      z-index: 2;
+    }
+
+    .reviews-wrapper iframe {
+      width: 100%;
+      height: 650px;
+      border: none;
+      background: #faf8f5;
+      display: block;
+    }
+
+    /* ===== СТИЛИ ДЛЯ ПРОКРУТКИ ===== */
+    /* Скрываем стандартную прокрутку, показываем кастомную */
+    .reviews-wrapper::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .reviews-wrapper::-webkit-scrollbar-track {
+      background: rgba(74, 94, 63, 0.04);
+      border-radius: 3px;
+    }
+
+    .reviews-wrapper::-webkit-scrollbar-thumb {
+      background: #4a5e3f;
+      border-radius: 3px;
+      transition: background 0.3s;
+    }
+
+    .reviews-wrapper::-webkit-scrollbar-thumb:hover {
+      background: #3a4e30;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 2.5rem 2.5rem;
+      background: #1c1c1a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      font-weight: 300;
+      font-size: 0.8rem;
+      color: #faf8f5;
+      margin-top: auto;
+    }
+
+    .footer .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #faf8f5;
+      font-weight: 700;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2.5rem;
+      margin: 0 auto;
+    }
+
+    .footer a {
+      color: #faf8f5;
+      text-decoration: none;
+      transition: color 0.3s;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .footer a:hover {
+      color: #4a5e3f;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 992px) {
+      .navbar {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+      .nav-links {
+        gap: 1.8rem;
+        font-size: 0.7rem;
+      }
+      .container {
+        padding: 1.5rem 1.5rem 3rem;
+      }
+      .reviews-wrapper iframe {
+        height: 550px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
+
+      .navbar {
+        padding: 1rem 1.2rem;
+        background: rgba(250, 248, 245, 0.95);
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: rgba(250, 248, 245, 0.98);
+        backdrop-filter: blur(12px);
+        padding: 1.5rem 0;
+        gap: 1.2rem;
+        border-top: 1px solid rgba(74, 94, 63, 0.06);
+        margin-top: 0.8rem;
+        font-size: 0.85rem;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 0.3rem 0;
+      }
+
+      .burger-menu {
+        display: flex;
+      }
+
+      .logo-text {
+        font-size: 1.5rem;
+      }
+
+      .container {
+        padding: 1rem 1.2rem 2rem;
+      }
+
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+
+      .reviews-wrapper iframe {
+        height: 450px;
+      }
+
+      .footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.2rem;
+        gap: 1.2rem;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar {
+        padding: 0.8rem 1rem;
+      }
+
+      .logo-text {
+        font-size: 1.2rem;
+      }
+
+      .page-header h1 {
+        font-size: 1.8rem;
+      }
+
+      .reviews-wrapper iframe {
+        height: 380px;
+      }
+
+      .reviews-wrapper {
+        border-radius: 0;
+      }
+    }
+
+    /* ===== FADE-IN ANIMATION ===== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reviews-wrapper {
+      animation: fadeInUp 0.8s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header class="navbar" id="navbar">
+    <a href="index.html" class="logo-wrapper">
+      <span class="logo-text">Uaram</span>
+    </a>
+
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Главная</a>
+      <a href="menu.html">Меню</a>
+      <a href="index.html#about">О нас</a>
+      <a href="index.html#interior">Интерьер</a>
+      <a href="reviews.html" style="color: #4a5e3f; font-weight: 500;">Отзывы</a>
+      <a href="index.html#contacts">Контакты</a>
+    </div>
+
+    <button class="burger-menu" id="burgerBtn" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="container">
+
+    <div class="page-header">
+      <h1>Отзывы <span class="accent-green">Uaram</span></h1>
+      <p class="page-sub">Что говорят наши гости</p>
+    </div>
+
+    <div class="reviews-wrapper">
+      <!-- ===== ВИДЖЕТ ОТЗЫВОВ С ЯНДЕКС.КАРТ ===== -->
+      <!-- ID организации: 151410829545 -->
+      <iframe
+        src="https://yandex.ru/maps-reviews-widget/151410829545?comments"
+        allowfullscreen="true"
+        loading="lazy"
+        title="Отзывы о ресторане Uaram на Яндекс.Картах">
+      </iframe>
+    </div>
+
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <span class="footer-brand">Uaram</span>
+    <div class="footer-links">
+      <a href="#">Instagram</a>
+      <a href="#">WhatsApp</a>
+      <a href="work.html">Работа у нас</a>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // ===== BURGER MENU =====
+    const burger = document.getElementById('burgerBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // ===== NAVBAR SCROLL =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > 30) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // ===== ЗАГРУЗКА IFRAME С ЗАДЕРЖКОЙ ДЛЯ ПЛАВНОСТИ =====
+    document.addEventListener('DOMContentLoaded', function() {
+      const iframe = document.querySelector('.reviews-wrapper iframe');
+      if (iframe) {
+        // Небольшая задержка для красивого появления
+        setTimeout(() => {
+          iframe.style.opacity = '1';
+        }, 300);
+      }
+    });
+  </script>
+
+</body>
+</html>
