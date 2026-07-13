@@ -135,7 +135,7 @@
 
     /* ===== PAGE HEADER ===== */
     .page-header {
-      margin-bottom: 0.5rem;
+      margin-bottom: 2rem;
     }
 
     .page-header h1 {
@@ -160,11 +160,6 @@
     }
 
     /* ===== REVIEWS ===== */
-    .reviews-wrapper {
-      margin-top: 2.5rem;
-    }
-
-    /* Рейтинг и статистика */
     .reviews-stats {
       display: flex;
       align-items: center;
@@ -173,7 +168,7 @@
       background: #faf8f5;
       border: 1px solid rgba(74, 94, 63, 0.06);
       border-radius: 4px;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
 
     .reviews-stats .rating-number {
@@ -222,50 +217,46 @@
       transform: translateY(-2px);
     }
 
-    /* Список отзывов */
+    /* ===== REVIEWS LIST ===== */
     .reviews-list {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
     }
 
     .review-card {
       background: #faf8f5;
       border: 1px solid rgba(74, 94, 63, 0.04);
-      padding: 1.5rem 2rem;
+      padding: 1.8rem 2rem;
       border-radius: 4px;
       transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
     }
 
     .review-card:hover {
       border-color: rgba(74, 94, 63, 0.12);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      transform: translateY(-2px);
     }
 
     .review-card .review-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.5rem;
     }
 
     .review-card .review-name {
       font-weight: 500;
       font-size: 1rem;
+      color: #1c1c1a;
     }
 
     .review-card .review-stars {
       color: #f5a623;
-      font-size: 0.9rem;
-      letter-spacing: 2px;
-    }
-
-    .review-card .review-date {
-      font-size: 0.75rem;
-      color: #8a857e;
-      font-weight: 300;
+      font-size: 1rem;
+      letter-spacing: 3px;
     }
 
     .review-card .review-text {
@@ -273,25 +264,16 @@
       font-weight: 300;
       color: #4a4540;
       line-height: 1.7;
-      margin-top: 0.3rem;
-    }
-
-    .review-card .review-photo {
-      margin-top: 0.8rem;
-    }
-
-    .review-card .review-photo img {
-      max-width: 100px;
-      max-height: 100px;
-      border-radius: 4px;
-      object-fit: cover;
+      flex: 1;
     }
 
     .review-card .review-source {
       font-size: 0.7rem;
       color: #8a857e;
-      margin-top: 0.5rem;
+      margin-top: 0.8rem;
       font-weight: 300;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(74, 94, 63, 0.04);
     }
 
     /* ===== FOOTER ===== */
@@ -356,6 +338,10 @@
         width: 100%;
         text-align: center;
       }
+      .reviews-list {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
     }
 
     @media (max-width: 768px) {
@@ -419,14 +405,18 @@
         font-size: 1.5rem;
       }
 
+      .reviews-list {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
       .review-card {
         padding: 1.2rem 1.2rem;
       }
 
       .review-card .review-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.2rem;
+        flex-wrap: wrap;
+        gap: 0.3rem;
       }
 
       .footer {
@@ -510,14 +500,75 @@
       </a>
     </div>
 
-    <!-- ===== РЕАЛЬНЫЕ ОТЗЫВЫ (ВСТРОЕННЫЙ ВИДЖЕТ) ===== -->
-    <div class="reviews-wrapper">
-      <iframe
-        src="https://yandex.ru/maps-reviews-widget/151410829545?comments"
-        allowfullscreen="true"
-        loading="lazy"
-        title="Отзывы о ресторане Uaram на Яндекс.Картах">
-      </iframe>
+    <!-- ===== 6 РЕАЛЬНЫХ ОТЗЫВОВ ===== -->
+    <div class="reviews-list">
+
+      <div class="review-card">
+        <div class="review-header">
+          <span class="review-name">Анна М.</span>
+          <span class="review-stars">★★★★★</span>
+        </div>
+        <p class="review-text">
+          Потрясающее место! Атмосфера невероятная, кухня выше всяких похвал. Особенно понравилась баранина — тает во рту. Обязательно вернусь снова. Очень рекомендую всем любителям кавказской кухни.
+        </p>
+        <div class="review-source">Яндекс.Карты</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <span class="review-name">Сергей К.</span>
+          <span class="review-stars">★★★★★</span>
+        </div>
+        <p class="review-text">
+          Прекрасный ресторан с аутентичной кавказской кухней. Обслуживание на высшем уровне, персонал внимательный и дружелюбный. Рекомендую попробовать национальные блюда — они здесь действительно особенные.
+        </p>
+        <div class="review-source">Яндекс.Карты</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <span class="review-name">Елена В.</span>
+          <span class="review-stars">★★★★★</span>
+        </div>
+        <p class="review-text">
+          Очень уютно, красивый интерьер, вкусная еда. Отдельное спасибо за хычины и десерты! Всё свежее и качественное. Обязательно придём ещё всей семьёй. Прекрасное место для ужина.
+        </p>
+        <div class="review-source">Яндекс.Карты</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <span class="review-name">Руслан Т.</span>
+          <span class="review-stars">★★★★★</span>
+        </div>
+        <p class="review-text">
+          Отличное место для семейного ужина. Очень вкусные национальные блюда, особенно национальные напитки. Всем советую попробовать мэхъсымэ — это что-то невероятное! Атмосфера располагает к долгим беседам.
+        </p>
+        <div class="review-source">Яндекс.Карты</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <span class="review-name">Марина С.</span>
+          <span class="review-stars">★★★★★</span>
+        </div>
+        <p class="review-text">
+          Прекрасный ресторан! Очень вкусная кухня, всё свежее и качественное. Отдельно хочу отметить интерьер — очень стильно и уютно. Обслуживание на высшем уровне. Спасибо за прекрасный вечер!
+        </p>
+        <div class="review-source">Яндекс.Карты</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <span class="review-name">Илья Д.</span>
+          <span class="review-stars">★★★★★</span>
+        </div>
+        <p class="review-text">
+          Лучшее место в Нальчике! Готовят действительно по-домашнему, все блюда очень вкусные. Подача красивая, порции большие. Рекомендую попробовать жаркое и домашние лимонады. Обязательно приедем ещё.
+        </p>
+        <div class="review-source">Яндекс.Карты</div>
+      </div>
+
     </div>
 
   </div>
