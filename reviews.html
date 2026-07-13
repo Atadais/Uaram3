@@ -159,56 +159,139 @@
       font-size: 1.05rem;
     }
 
-    /* ===== REVIEWS WIDGET ===== */
+    /* ===== REVIEWS ===== */
     .reviews-wrapper {
       margin-top: 2.5rem;
-      position: relative;
-      border-radius: 4px;
-      overflow: hidden;
+    }
+
+    /* Рейтинг и статистика */
+    .reviews-stats {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      padding: 1.5rem 2rem;
+      background: #faf8f5;
       border: 1px solid rgba(74, 94, 63, 0.06);
-      box-shadow: 0 4px 40px rgba(0, 0, 0, 0.01);
-      background: #faf8f5;
+      border-radius: 4px;
+      margin-bottom: 2rem;
     }
 
-    /* Декоративный элемент сверху */
-    .reviews-wrapper::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #4a5e3f, #8aa37e, #4a5e3f);
-      z-index: 2;
+    .reviews-stats .rating-number {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #4a5e3f;
+      font-family: 'Playfair Display', serif;
+      line-height: 1;
     }
 
-    .reviews-wrapper iframe {
-      width: 100%;
-      height: 650px;
-      border: none;
-      background: #faf8f5;
-      display: block;
+    .reviews-stats .rating-stars {
+      font-size: 1.8rem;
+      color: #f5a623;
+      letter-spacing: 4px;
+      margin: 0.2rem 0;
     }
 
-    /* ===== СТИЛИ ДЛЯ ПРОКРУТКИ ===== */
-    /* Скрываем стандартную прокрутку, показываем кастомную */
-    .reviews-wrapper::-webkit-scrollbar {
-      width: 6px;
+    .reviews-stats .rating-label {
+      font-size: 0.9rem;
+      color: #5a5650;
+      font-weight: 300;
     }
 
-    .reviews-wrapper::-webkit-scrollbar-track {
-      background: rgba(74, 94, 63, 0.04);
-      border-radius: 3px;
+    .reviews-stats .rating-count {
+      font-size: 0.8rem;
+      color: #8a857e;
     }
 
-    .reviews-wrapper::-webkit-scrollbar-thumb {
+    .reviews-stats .write-review-btn {
+      margin-left: auto;
+      padding: 0.8rem 2rem;
       background: #4a5e3f;
-      border-radius: 3px;
-      transition: background 0.3s;
+      color: #faf8f5;
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      border: 1px solid #4a5e3f;
+      border-radius: 0;
     }
 
-    .reviews-wrapper::-webkit-scrollbar-thumb:hover {
+    .reviews-stats .write-review-btn:hover {
       background: #3a4e30;
+      border-color: #3a4e30;
+      transform: translateY(-2px);
+    }
+
+    /* Список отзывов */
+    .reviews-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .review-card {
+      background: #faf8f5;
+      border: 1px solid rgba(74, 94, 63, 0.04);
+      padding: 1.5rem 2rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .review-card:hover {
+      border-color: rgba(74, 94, 63, 0.12);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    }
+
+    .review-card .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .review-card .review-name {
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    .review-card .review-stars {
+      color: #f5a623;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+    }
+
+    .review-card .review-date {
+      font-size: 0.75rem;
+      color: #8a857e;
+      font-weight: 300;
+    }
+
+    .review-card .review-text {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: #4a4540;
+      line-height: 1.7;
+      margin-top: 0.3rem;
+    }
+
+    .review-card .review-photo {
+      margin-top: 0.8rem;
+    }
+
+    .review-card .review-photo img {
+      max-width: 100px;
+      max-height: 100px;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+
+    .review-card .review-source {
+      font-size: 0.7rem;
+      color: #8a857e;
+      margin-top: 0.5rem;
+      font-weight: 300;
     }
 
     /* ===== FOOTER ===== */
@@ -263,8 +346,15 @@
       .container {
         padding: 1.5rem 1.5rem 3rem;
       }
-      .reviews-wrapper iframe {
-        height: 550px;
+      .reviews-stats {
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 1.2rem 1.5rem;
+      }
+      .reviews-stats .write-review-btn {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
       }
     }
 
@@ -315,8 +405,28 @@
         font-size: 2.2rem;
       }
 
-      .reviews-wrapper iframe {
-        height: 450px;
+      .reviews-stats {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.2rem 1rem;
+      }
+
+      .reviews-stats .rating-number {
+        font-size: 2.8rem;
+      }
+
+      .reviews-stats .rating-stars {
+        font-size: 1.5rem;
+      }
+
+      .review-card {
+        padding: 1.2rem 1.2rem;
+      }
+
+      .review-card .review-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
       }
 
       .footer {
@@ -345,29 +455,13 @@
         font-size: 1.8rem;
       }
 
-      .reviews-wrapper iframe {
-        height: 380px;
+      .reviews-stats .rating-number {
+        font-size: 2.2rem;
       }
 
-      .reviews-wrapper {
-        border-radius: 0;
+      .review-card {
+        padding: 1rem;
       }
-    }
-
-    /* ===== FADE-IN ANIMATION ===== */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .reviews-wrapper {
-      animation: fadeInUp 0.8s ease;
     }
   </style>
 </head>
@@ -401,9 +495,23 @@
       <p class="page-sub">Что говорят наши гости</p>
     </div>
 
+    <!-- ===== СТАТИСТИКА И КНОПКА ===== -->
+    <div class="reviews-stats">
+      <div>
+        <span class="rating-number">4.9</span>
+      </div>
+      <div>
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-label">Средняя оценка</div>
+        <div class="rating-count">На основе отзывов</div>
+      </div>
+      <a href="https://yandex.ru/maps/org/151410829545/reviews/" target="_blank" class="write-review-btn">
+        Оставить отзыв →
+      </a>
+    </div>
+
+    <!-- ===== РЕАЛЬНЫЕ ОТЗЫВЫ (ВСТРОЕННЫЙ ВИДЖЕТ) ===== -->
     <div class="reviews-wrapper">
-      <!-- ===== ВИДЖЕТ ОТЗЫВОВ С ЯНДЕКС.КАРТ ===== -->
-      <!-- ID организации: 151410829545 -->
       <iframe
         src="https://yandex.ru/maps-reviews-widget/151410829545?comments"
         allowfullscreen="true"
@@ -448,17 +556,6 @@
         navbar.classList.add('scrolled');
       } else {
         navbar.classList.remove('scrolled');
-      }
-    });
-
-    // ===== ЗАГРУЗКА IFRAME С ЗАДЕРЖКОЙ ДЛЯ ПЛАВНОСТИ =====
-    document.addEventListener('DOMContentLoaded', function() {
-      const iframe = document.querySelector('.reviews-wrapper iframe');
-      if (iframe) {
-        // Небольшая задержка для красивого появления
-        setTimeout(() => {
-          iframe.style.opacity = '1';
-        }, 300);
       }
     });
   </script>
