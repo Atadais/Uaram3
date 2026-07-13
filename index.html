@@ -217,16 +217,9 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-      overflow: hidden;
-    }
-
-    .hero-bg picture,
-    .hero-bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .hero-content {
@@ -342,10 +335,9 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-      opacity: 0.06;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%234a5e3f"/></svg>');
       background-size: cover;
       background-position: center;
+      background-repeat: no-repeat;
       pointer-events: none;
       display: none;
     }
@@ -442,10 +434,9 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-      opacity: 0.04;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%234a5e3f"/></svg>');
       background-size: cover;
       background-position: center;
+      background-repeat: no-repeat;
       pointer-events: none;
       display: none;
     }
@@ -635,10 +626,9 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-      opacity: 0.04;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%234a5e3f"/></svg>');
       background-size: cover;
       background-position: center;
+      background-repeat: no-repeat;
       pointer-events: none;
       display: none;
     }
@@ -822,12 +812,6 @@
         font-size: 1rem;
       }
 
-      /* Адаптивность для фона Hero на планшетах */
-      .hero-bg picture,
-      .hero-bg img {
-        object-position: 45% center;
-      }
-
       .about-grid {
         grid-template-columns: 1fr;
         gap: 30px;
@@ -932,12 +916,6 @@
         padding: 80px 0 40px;
       }
 
-      /* Адаптивность для фона Hero на телефонах */
-      .hero-bg picture,
-      .hero-bg img {
-        object-position: 50% center;
-      }
-
       .about-image {
         min-height: 240px;
       }
@@ -1009,27 +987,8 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="hero">
-    <!-- ===== ФОНОВОЕ ФОТО (адаптивное) ===== -->
+    <!-- ===== ФОНОВОЕ ФОТО ===== -->
     <div class="hero-bg" style="background-image: url('images/background/hero-bg.jpg');"></div>
-      <picture>
-        <!-- Для мобильных (до 480px) -->
-        <source 
-          media="(max-width: 480px)" 
-          srcset="images/background/hero-bg-mobile.jpg" 
-        />
-        <!-- Для планшетов (до 768px) -->
-        <source 
-          media="(max-width: 768px)" 
-          srcset="images/background/hero-bg-tablet.jpg" 
-        />
-        <!-- Для десктопов (по умолчанию) -->
-        <img 
-          src="images/background/hero-bg.jpg" 
-          alt="Интерьер ресторана Uaram" 
-          loading="lazy"
-        />
-      </picture>
-    </div>
 
     <div class="hero-content">
       <div class="hero-badge">Добро пожаловать</div>
@@ -1055,7 +1014,7 @@
 
     <!-- ===== ФОНОВОЕ ФОТО (скрыто по умолчанию) ===== -->
     <!-- ДЛЯ РАЗРАБОТЧИКА: Раскомментировать и заменить url для фонового фото -->
-    <!-- <div class="about-bg" style="background-image: url('images/background/about-bg.jpg'); opacity: 0.08;"></div> -->
+    <!-- <div class="about-bg" style="background-image: url('images/background/about-bg.jpg');"></div> -->
 
     <div class="container">
       <div class="about-grid">
@@ -1090,7 +1049,7 @@
 
     <!-- ===== ФОНОВОЕ ФОТО ПОД СЛАЙДЕРОМ (скрыто по умолчанию) ===== -->
     <!-- ДЛЯ РАЗРАБОТЧИКА: Раскомментировать и заменить url для фонового фото -->
-    <!-- <div class="interior-bg" style="background-image: url('images/background/interior-bg.jpg'); opacity: 0.06;"></div> -->
+    <!-- <div class="interior-bg" style="background-image: url('images/background/interior-bg.jpg');"></div> -->
 
     <div class="container">
       <div class="interior-header fade-in">
@@ -1123,7 +1082,7 @@
 
     <!-- ===== ФОНОВОЕ ФОТО ДЛЯ БЛОКА КОНТАКТОВ (скрыто по умолчанию) ===== -->
     <!-- ДЛЯ РАЗРАБОТЧИКА: Раскомментировать и заменить url для фонового фото -->
-    <!-- <div class="contacts-bg" style="background-image: url('images/background/contacts-bg.jpg'); opacity: 0.05;"></div> -->
+    <!-- <div class="contacts-bg" style="background-image: url('images/background/contacts-bg.jpg');"></div> -->
 
     <div class="container">
       <div class="contacts-grid">
@@ -1171,8 +1130,7 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script>
-    // ===== BURGER MENU =====
-    const burger = document.getElementById('burgerBtn');
+    // ===== BURGER MENU =====    const burger = document.getElementById('burgerBtn');
     const navLinks = document.getElementById('navLinks');
 
     burger.addEventListener('click', () => {
