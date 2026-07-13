@@ -222,22 +222,30 @@
       background-repeat: no-repeat;
     }
 
-    /* Адаптив для фона на мобильных */
+    /* Для мобильных - фото на всю высоту с красивым центрированием */
     @media (max-width: 768px) {
+      .hero {
+        min-height: 100vh;
+        padding: 80px 0 40px;
+      }
+
       .hero-bg {
-        background-size: contain;
-        background-position: center;
+        background-size: cover;
+        background-position: center 30%;
         background-repeat: no-repeat;
-        background-color: #faf8f5;
       }
     }
 
     @media (max-width: 480px) {
+      .hero {
+        min-height: 100vh;
+        padding: 70px 0 30px;
+      }
+
       .hero-bg {
-        background-size: contain;
-        background-position: center;
+        background-size: cover;
+        background-position: center 25%;
         background-repeat: no-repeat;
-        background-color: #faf8f5;
       }
     }
 
@@ -931,8 +939,8 @@
       }
 
       .hero {
-        min-height: 90vh;
-        padding: 80px 0 40px;
+        min-height: 100vh;
+        padding: 70px 0 30px;
       }
 
       .about-image {
@@ -1028,12 +1036,7 @@
 
   <!-- ===== ABOUT ===== -->
   <section class="about" id="about">
-    <!-- ===== ВРЕМЕННЫЙ КРАСИВЫЙ ФОН ===== -->
     <div class="about-decor-bg"></div>
-
-    <!-- ===== ФОНОВОЕ ФОТО (скрыто по умолчанию) ===== -->
-    <!-- <div class="about-bg" style="background-image: url('images/background/about-bg.jpg');"></div> -->
-
     <div class="container">
       <div class="about-grid">
         <div class="about-text fade-in">
@@ -1042,13 +1045,9 @@
             Uaram — это не просто ресторан, это пространство, где высокая гастрономия встречается с атмосферой уединения и вдохновения. Наше название и концепция отражают стремление подарить каждому гостю ощущение гармонии, сравнимое с чтением любимого романа, страницы которого оживают вокруг вас. Мы с гордостью следуем традициям Халяль, выбирая для наших блюд только самые чистые, свежие и безупречные ингредиенты. Каждый визит в Uaram — это новая глава вашего кулинарного путешествия в окружении эстетики, уюта и безупречного сервиса.
           </p>
         </div>
-
-        <!-- ===== MEDIA ZONE ===== -->
         <div class="about-image fade-in">
-          <!-- <img src="images/interior/interior-1.jpg" alt="Интерьер ресторана Uaram" /> -->
           <div class="about-image-placeholder">Фото интерьера</div>
         </div>
-        <!-- ===== END MEDIA ZONE ===== -->
       </div>
     </div>
   </section>
@@ -1061,13 +1060,9 @@
         <h2>Интерьер <span class="accent-green">Uaram</span></h2>
         <p>Атмосфера уюта и вдохновения в каждой детали</p>
       </div>
-
       <div class="slider-wrapper fade-in">
-        <div class="slider-track" id="sliderTrack">
-          <!-- Слайды будут добавляться через JS -->
-        </div>
+        <div class="slider-track" id="sliderTrack"></div>
       </div>
-
       <div class="slider-dots" id="sliderDots"></div>
     </div>
   </section>
@@ -1087,24 +1082,20 @@
       <div class="contacts-grid">
         <div class="contacts-info fade-in">
           <h2>Контакты</h2>
-
           <div class="contact-item">
             <strong>Адрес</strong>
             Uaram, ресторан<br />
             ул. Ахохова, 173, Нальчик
           </div>
-
           <div class="contact-item">
             <strong>Режим работы</strong>
             ПН-ВС 10:00 – 00:00
           </div>
-
           <div class="contact-item">
             <strong>Телефон</strong>
             <a href="tel:+79034903095" class="contact-phone">+7 (903) 490-30-95</a>
           </div>
         </div>
-
         <div class="contacts-map fade-in">
           <iframe
             src="https://yandex.ru/map-widget/v1/?ll=43.603954,43.495560&z=17&pt=43.603954,43.495560&whatshere%5Bpoint%5D=43.603954,43.495560&whatshere%5Bzoom%5D=17"
@@ -1195,14 +1186,12 @@
     const lightboxImage = document.getElementById('lightboxImage');
     const lightboxClose = document.getElementById('lightboxClose');
 
-    // Build slides
     function buildSlider() {
       track.innerHTML = '';
       images.forEach((img, index) => {
         const slide = document.createElement('div');
         slide.className = 'slider-slide';
         slide.dataset.index = index;
-
         if (img.src) {
           const imgEl = document.createElement('img');
           imgEl.src = img.src;
@@ -1214,12 +1203,10 @@
           placeholder.textContent = img.label || `Фото ${index + 1}`;
           slide.appendChild(placeholder);
         }
-
         slide.addEventListener('click', () => openLightbox(index));
         track.appendChild(slide);
       });
 
-      // Dots
       dotsContainer.innerHTML = '';
       images.forEach((_, index) => {
         const dot = document.createElement('button');
@@ -1236,9 +1223,7 @@
       const total = slides.length;
       if (currentSlide >= total) currentSlide = 0;
       if (currentSlide < 0) currentSlide = total - 1;
-
       track.style.transform = `translateX(-${currentSlide * 100}%)`;
-
       document.querySelectorAll('.slider-dot').forEach((dot, i) => {
         dot.classList.toggle('active', i === currentSlide);
       });
@@ -1260,7 +1245,6 @@
       }
     }
 
-    // Lightbox
     function openLightbox(index) {
       const slide = track.querySelectorAll('.slider-slide')[index];
       const img = slide.querySelector('img');
@@ -1280,12 +1264,10 @@
       document.body.style.overflow = '';
     }
 
-    // Pause on hover
     const sliderWrapper = document.querySelector('.slider-wrapper');
     sliderWrapper.addEventListener('mouseenter', stopAutoplay);
     sliderWrapper.addEventListener('mouseleave', startAutoplay);
 
-    // Lightbox events
     lightboxClose.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) closeLightbox();
@@ -1294,11 +1276,9 @@
       if (e.key === 'Escape') closeLightbox();
     });
 
-    // Init
     buildSlider();
     startAutoplay();
 
-    // Keyboard navigation for slider
     document.addEventListener('keydown', (e) => {
       if (lightbox.classList.contains('active')) {
         if (e.key === 'Escape') closeLightbox();
