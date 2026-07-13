@@ -217,9 +217,16 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><rect width="1600" height="900" fill="%23faf8f5"/><circle cx="400" cy="200" r="300" fill="%23e8f0e6" opacity="0.25"/><circle cx="1200" cy="600" r="400" fill="%23e8f0e6" opacity="0.12"/><ellipse cx="800" cy="450" rx="600" ry="350" fill="%23dce8da" opacity="0.04"/></svg>');
-      background-size: cover;
-      background-position: center;
+      overflow: hidden;
+    }
+
+    .hero-bg picture,
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
     }
 
     .hero-content {
@@ -815,6 +822,12 @@
         font-size: 1rem;
       }
 
+      /* Адаптивность для фона Hero на планшетах */
+      .hero-bg picture,
+      .hero-bg img {
+        object-position: 45% center;
+      }
+
       .about-grid {
         grid-template-columns: 1fr;
         gap: 30px;
@@ -919,6 +932,12 @@
         padding: 80px 0 40px;
       }
 
+      /* Адаптивность для фона Hero на телефонах */
+      .hero-bg picture,
+      .hero-bg img {
+        object-position: 50% center;
+      }
+
       .about-image {
         min-height: 240px;
       }
@@ -990,7 +1009,28 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="hero">
+    <!-- ===== ФОНОВОЕ ФОТО (адаптивное) ===== -->
     <div class="hero-bg" style="background-image: url('images/background/hero-bg.jpg');"></div>
+      <picture>
+        <!-- Для мобильных (до 480px) -->
+        <source 
+          media="(max-width: 480px)" 
+          srcset="images/background/hero-bg-mobile.jpg" 
+        />
+        <!-- Для планшетов (до 768px) -->
+        <source 
+          media="(max-width: 768px)" 
+          srcset="images/background/hero-bg-tablet.jpg" 
+        />
+        <!-- Для десктопов (по умолчанию) -->
+        <img 
+          src="images/background/hero-bg.jpg" 
+          alt="Интерьер ресторана Uaram" 
+          loading="lazy"
+        />
+      </picture>
+    </div>
+
     <div class="hero-content">
       <div class="hero-badge">Добро пожаловать</div>
       <h1>
@@ -1015,7 +1055,7 @@
 
     <!-- ===== ФОНОВОЕ ФОТО (скрыто по умолчанию) ===== -->
     <!-- ДЛЯ РАЗРАБОТЧИКА: Раскомментировать и заменить url для фонового фото -->
-    <!-- <div class="about-bg" style="background-image: url('fon-interior.jpg'); opacity: 0.08;"></div> -->
+    <!-- <div class="about-bg" style="background-image: url('images/background/about-bg.jpg'); opacity: 0.08;"></div> -->
 
     <div class="container">
       <div class="about-grid">
@@ -1030,10 +1070,10 @@
         <div class="about-image fade-in">
           <!-- ДЛЯ РАЗРАБОТЧИКА: Вставить фото интерьера или эстетичную деталь зала ресторана сюда -->
           <!-- Вариант 1: через тег img -->
-          <!-- <img src="interior.jpg" alt="Интерьер ресторана Uaram" /> -->
+          <!-- <img src="images/interior/interior-1.jpg" alt="Интерьер ресторана Uaram" /> -->
 
           <!-- Вариант 2: через CSS background -->
-          <!-- <div style="width:100%;height:100%;min-height:480px;background-image:url('interior.jpg');background-size:cover;background-position:center;"></div> -->
+          <!-- <div style="width:100%;height:100%;min-height:480px;background-image:url('images/interior/interior-1.jpg');background-size:cover;background-position:center;"></div> -->
 
           <!-- По умолчанию — заглушка -->
           <div class="about-image-placeholder">Фото интерьера</div>
@@ -1050,7 +1090,7 @@
 
     <!-- ===== ФОНОВОЕ ФОТО ПОД СЛАЙДЕРОМ (скрыто по умолчанию) ===== -->
     <!-- ДЛЯ РАЗРАБОТЧИКА: Раскомментировать и заменить url для фонового фото -->
-    <!-- <div class="interior-bg" style="background-image: url('fon-interior-slider.jpg'); opacity: 0.06;"></div> -->
+    <!-- <div class="interior-bg" style="background-image: url('images/background/interior-bg.jpg'); opacity: 0.06;"></div> -->
 
     <div class="container">
       <div class="interior-header fade-in">
@@ -1083,7 +1123,7 @@
 
     <!-- ===== ФОНОВОЕ ФОТО ДЛЯ БЛОКА КОНТАКТОВ (скрыто по умолчанию) ===== -->
     <!-- ДЛЯ РАЗРАБОТЧИКА: Раскомментировать и заменить url для фонового фото -->
-    <!-- <div class="contacts-bg" style="background-image: url('fon-contacts.jpg'); opacity: 0.05;"></div> -->
+    <!-- <div class="contacts-bg" style="background-image: url('images/background/contacts-bg.jpg'); opacity: 0.05;"></div> -->
 
     <div class="container">
       <div class="contacts-grid">
@@ -1184,11 +1224,11 @@
     // ===== SLIDER =====
     const images = [
       // ДЛЯ РАЗРАБОТЧИКА: Заменить ссылки на свои фото
-      { src: '', label: 'Фото интерьера 1' },
-      { src: '', label: 'Фото интерьера 2' },
-      { src: '', label: 'Фото интерьера 3' },
-      { src: '', label: 'Фото интерьера 4' },
-      { src: '', label: 'Фото интерьера 5' },
+      { src: 'images/interior/interior-1.jpg', label: 'Уютный зал ресторана' },
+      { src: 'images/interior/interior-2.jpg', label: 'Панорама главного зала' },
+      { src: 'images/interior/interior-3.jpg', label: 'Интерьер и детали' },
+      { src: 'images/interior/interior-4.jpg', label: 'Вид на кухню' },
+      { src: 'images/interior/interior-5.jpg', label: 'Вечерняя атмосфера' },
     ];
 
     let currentSlide = 0;
