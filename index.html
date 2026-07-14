@@ -577,7 +577,7 @@
     /* ===== CONTACTS ===== */
     .contacts {
       padding: 80px 0;
-      background: transparent;
+      background: #e2e8da; /* Зеленый фон для секции контактов */
       position: relative;
       min-height: 400px;
       overflow: hidden;
@@ -591,8 +591,12 @@
     .contacts-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 0; /* Убираем зазор, чтобы карта шла вплотную */
       align-items: stretch;
+      background: #faf8f5; /* Светлый фон для левой части */
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.04);
     }
 
     .contacts-info {
@@ -600,6 +604,8 @@
       flex-direction: column;
       justify-content: center;
       gap: 1.5rem;
+      padding: 3rem 4rem;
+      background: #faf8f5;
     }
 
     .contacts-info h2 {
@@ -637,13 +643,13 @@
     }
 
     .contacts-map {
-      border-radius: 4px;
+      border-radius: 0; /* Убираем скругление, чтобы карта была ровно по краю */
       overflow: hidden;
       min-height: 380px;
-      background: rgba(217, 210, 197, 0.3);
-      backdrop-filter: blur(4px);
+      background: #e2e8da;
       position: relative;
-      border: 1px solid rgba(74, 94, 63, 0.06);
+      border: none; /* Убираем рамку */
+      height: 100%;
     }
 
     .contacts-map iframe {
@@ -709,7 +715,7 @@
       }
       .contacts-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 0;
       }
       .slider-slide {
         height: 380px;
@@ -835,6 +841,10 @@
 
       .contacts {
         padding: 60px 0;
+      }
+
+      .contacts-info {
+        padding: 2rem 1.5rem;
       }
 
       .contacts-map {
