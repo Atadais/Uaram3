@@ -343,6 +343,17 @@
       overflow: hidden;
     }
 
+    .about-decor-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse at 20% 50%, rgba(74, 94, 63, 0.06) 0%, transparent 70%),
+                  radial-gradient(ellipse at 80% 50%, rgba(74, 94, 63, 0.03) 0%, transparent 60%),
+                  radial-gradient(ellipse at 50% 100%, rgba(74, 94, 63, 0.02) 0%, transparent 50%);
+      display: none;
+    }
+
     .about .container {
       position: relative;
       z-index: 1;
@@ -566,13 +577,10 @@
     /* ===== CONTACTS ===== */
     .contacts {
       padding: 80px 0;
-      background: rgba(74, 94, 63, 0.85);
-      backdrop-filter: blur(8px);
+      background: transparent;
       position: relative;
-      min-height: 450px;
+      min-height: 400px;
       overflow: hidden;
-      border-top: 2px solid rgba(74, 94, 63, 0.2);
-      border-bottom: 2px solid rgba(74, 94, 63, 0.2);
     }
 
     .contacts .container {
@@ -582,9 +590,9 @@
 
     .contacts-grid {
       display: grid;
-      grid-template-columns: 1fr 1.5fr;
+      grid-template-columns: 1fr 1fr;
       gap: 60px;
-      align-items: center;
+      align-items: stretch;
     }
 
     .contacts-info {
@@ -597,58 +605,51 @@
     .contacts-info h2 {
       font-size: clamp(2rem, 3vw, 3rem);
       margin-bottom: 0.5rem;
-      color: #faf8f5;
-    }
-
-    .contacts-info h2 .accent-green {
-      color: #faf8f5;
-      opacity: 0.7;
     }
 
     .contact-item {
       font-size: 1.05rem;
       font-weight: 300;
-      color: #faf8f5;
+      color: #4a4540;
       line-height: 1.6;
     }
 
     .contact-item strong {
       font-weight: 500;
-      color: #faf8f5;
+      color: #1c1c1a;
       display: block;
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       margin-bottom: 0.1rem;
-      opacity: 0.7;
     }
 
     .contact-phone {
       font-size: 1.4rem;
       font-weight: 400;
-      color: #faf8f5;
+      color: #4a5e3f;
       text-decoration: none;
       transition: color 0.3s;
     }
 
     .contact-phone:hover {
-      color: #d9d2c5;
+      color: #3a4e30;
     }
 
     .contacts-map {
       border-radius: 4px;
       overflow: hidden;
-      min-height: 420px;
+      min-height: 380px;
       background: rgba(217, 210, 197, 0.3);
       backdrop-filter: blur(4px);
       position: relative;
-      border: 1px solid rgba(250, 248, 245, 0.1);
+      border: 1px solid rgba(74, 94, 63, 0.06);
     }
 
     .contacts-map iframe {
       width: 100%;
       height: 100%;
-      min-height: 420px;
+      min-height: 380px;
       border: none;
       display: block;
     }
@@ -718,9 +719,6 @@
       }
       .about-image-placeholder {
         min-height: 380px;
-      }
-      .contacts-map {
-        min-height: 350px;
       }
     }
 
@@ -840,11 +838,11 @@
       }
 
       .contacts-map {
-        min-height: 300px;
+        min-height: 280px;
       }
 
       .contacts-map iframe {
-        min-height: 300px;
+        min-height: 280px;
       }
 
       .btn-primary, .btn-outline {
@@ -888,11 +886,11 @@
       }
 
       .contacts-map {
-        min-height: 250px;
+        min-height: 220px;
       }
 
       .contacts-map iframe {
-        min-height: 250px;
+        min-height: 220px;
       }
 
       .contact-phone {
@@ -942,7 +940,9 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="hero">
+    <!-- ===== ФОНОВОЕ ФОТО (индивидуальное для Hero) ===== -->
     <div class="hero-bg" style="background-image: url('images/background/hero-bg.jpg');"></div>
+
     <div class="hero-content">
       <div class="hero-badge">Добро пожаловать</div>
       <h1>
@@ -971,6 +971,9 @@
           </p>
         </div>
         <div class="about-image fade-in">
+          <!-- ===== MEDIA ZONE ===== -->
+          <!-- ДЛЯ РАЗРАБОТЧИКА: Вставить фото интерьера или эстетичную деталь зала ресторана сюда -->
+          <!-- <img src="images/interior/interior-1.jpg" alt="Интерьер ресторана Uaram" /> -->
           <div class="about-image-placeholder">Фото интерьера</div>
         </div>
       </div>
@@ -999,36 +1002,36 @@
     </div>
   </div>
 
-<!-- ===== CONTACTS ===== -->
-<section class="contacts" id="contacts">
-  <div class="container">
-    <div class="contacts-grid">
-      <div class="contacts-info fade-in">
-        <h2>Контакты</h2>
-        <div class="contact-item">
-          <strong>Адрес</strong>
-          Uaram, ресторан<br />
-          ул. Ахохова, 173, Нальчик
+  <!-- ===== CONTACTS ===== -->
+  <section class="contacts" id="contacts">
+    <div class="container">
+      <div class="contacts-grid">
+        <div class="contacts-info fade-in">
+          <h2>Контакты</h2>
+          <div class="contact-item">
+            <strong>Адрес</strong>
+            Uaram, ресторан<br />
+            ул. Ахохова, 173, Нальчик
+          </div>
+          <div class="contact-item">
+            <strong>Режим работы</strong>
+            ПН-ВС 10:00 – 00:00
+          </div>
+          <div class="contact-item">
+            <strong>Телефон</strong>
+            <a href="tel:+79034903095" class="contact-phone">+7 (903) 490-30-95</a>
+          </div>
         </div>
-        <div class="contact-item">
-          <strong>Режим работы</strong>
-          ПН-ВС 10:00 – 00:00
+        <div class="contacts-map fade-in">
+          <iframe
+            src="https://yandex.ru/map-widget/v1/?ll=43.603954,43.495560&z=17&pt=43.603954,43.495560&whatshere%5Bpoint%5D=43.603954,43.495560&whatshere%5Bzoom%5D=17"
+            allowfullscreen="true"
+            loading="lazy">
+          </iframe>
         </div>
-        <div class="contact-item">
-          <strong>Телефон</strong>
-          <a href="tel:+79034903095" class="contact-phone">+7 (903) 490-30-95</a>
-        </div>
-      </div>
-      <div class="contacts-map fade-in">
-        <iframe
-          src="https://yandex.ru/map-widget/v1/?ll=43.603954,43.495560&z=17"
-          allowfullscreen="true"
-          loading="lazy">
-        </iframe>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
