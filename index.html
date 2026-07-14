@@ -154,7 +154,7 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 2.8rem;
+      gap: 3.5rem;
       font-weight: 400;
       font-size: 0.75rem;
       letter-spacing: 0.1em;
@@ -341,17 +341,6 @@
       background: transparent;
       min-height: 500px;
       overflow: hidden;
-    }
-
-    .about-decor-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background: radial-gradient(ellipse at 20% 50%, rgba(74, 94, 63, 0.06) 0%, transparent 70%),
-                  radial-gradient(ellipse at 80% 50%, rgba(74, 94, 63, 0.03) 0%, transparent 60%),
-                  radial-gradient(ellipse at 50% 100%, rgba(74, 94, 63, 0.02) 0%, transparent 50%);
-      display: none;
     }
 
     .about .container {
@@ -577,10 +566,13 @@
     /* ===== CONTACTS ===== */
     .contacts {
       padding: 80px 0;
-      background: transparent;
+      background: rgba(74, 94, 63, 0.85);
+      backdrop-filter: blur(8px);
       position: relative;
-      min-height: 400px;
+      min-height: 450px;
       overflow: hidden;
+      border-top: 2px solid rgba(74, 94, 63, 0.2);
+      border-bottom: 2px solid rgba(74, 94, 63, 0.2);
     }
 
     .contacts .container {
@@ -590,9 +582,9 @@
 
     .contacts-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1.5fr;
       gap: 60px;
-      align-items: stretch;
+      align-items: center;
     }
 
     .contacts-info {
@@ -605,51 +597,58 @@
     .contacts-info h2 {
       font-size: clamp(2rem, 3vw, 3rem);
       margin-bottom: 0.5rem;
+      color: #faf8f5;
+    }
+
+    .contacts-info h2 .accent-green {
+      color: #faf8f5;
+      opacity: 0.7;
     }
 
     .contact-item {
       font-size: 1.05rem;
       font-weight: 300;
-      color: #4a4540;
+      color: #faf8f5;
       line-height: 1.6;
     }
 
     .contact-item strong {
       font-weight: 500;
-      color: #1c1c1a;
+      color: #faf8f5;
       display: block;
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       margin-bottom: 0.1rem;
+      opacity: 0.7;
     }
 
     .contact-phone {
       font-size: 1.4rem;
       font-weight: 400;
-      color: #4a5e3f;
+      color: #faf8f5;
       text-decoration: none;
       transition: color 0.3s;
     }
 
     .contact-phone:hover {
-      color: #3a4e30;
+      color: #d9d2c5;
     }
 
     .contacts-map {
       border-radius: 4px;
       overflow: hidden;
-      min-height: 380px;
+      min-height: 420px;
       background: rgba(217, 210, 197, 0.3);
       backdrop-filter: blur(4px);
       position: relative;
-      border: 1px solid rgba(74, 94, 63, 0.06);
+      border: 1px solid rgba(250, 248, 245, 0.1);
     }
 
     .contacts-map iframe {
       width: 100%;
       height: 100%;
-      min-height: 380px;
+      min-height: 420px;
       border: none;
       display: block;
     }
@@ -701,7 +700,7 @@
         padding-right: 1.5rem;
       }
       .nav-links {
-        gap: 1.8rem;
+        gap: 2.5rem;
         font-size: 0.7rem;
       }
       .about-grid {
@@ -719,6 +718,9 @@
       }
       .about-image-placeholder {
         min-height: 380px;
+      }
+      .contacts-map {
+        min-height: 350px;
       }
     }
 
@@ -838,11 +840,11 @@
       }
 
       .contacts-map {
-        min-height: 280px;
+        min-height: 300px;
       }
 
       .contacts-map iframe {
-        min-height: 280px;
+        min-height: 300px;
       }
 
       .btn-primary, .btn-outline {
@@ -886,11 +888,11 @@
       }
 
       .contacts-map {
-        min-height: 220px;
+        min-height: 250px;
       }
 
       .contacts-map iframe {
-        min-height: 220px;
+        min-height: 250px;
       }
 
       .contact-phone {
@@ -940,9 +942,7 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="hero">
-    <!-- ===== ФОНОВОЕ ФОТО (индивидуальное для Hero) ===== -->
     <div class="hero-bg" style="background-image: url('images/background/hero-bg.jpg');"></div>
-
     <div class="hero-content">
       <div class="hero-badge">Добро пожаловать</div>
       <h1>
@@ -971,9 +971,6 @@
           </p>
         </div>
         <div class="about-image fade-in">
-          <!-- ===== MEDIA ZONE ===== -->
-          <!-- ДЛЯ РАЗРАБОТЧИКА: Вставить фото интерьера или эстетичную деталь зала ресторана сюда -->
-          <!-- <img src="images/interior/interior-1.jpg" alt="Интерьер ресторана Uaram" /> -->
           <div class="about-image-placeholder">Фото интерьера</div>
         </div>
       </div>
