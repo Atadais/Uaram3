@@ -222,13 +222,11 @@
       background-repeat: no-repeat;
     }
 
-    /* Адаптив для мобильных - фото на всю высоту, видно не менее 50% */
     @media (max-width: 768px) {
       .hero {
         min-height: 100vh;
         padding: 80px 0 40px;
       }
-
       .hero-bg {
         background-size: cover;
         background-position: center 35%;
@@ -241,7 +239,6 @@
         min-height: 100vh;
         padding: 70px 0 30px;
       }
-
       .hero-bg {
         background-size: cover;
         background-position: center 30%;
@@ -1014,7 +1011,6 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="hero">
-    <!-- ===== ФОНОВОЕ ФОТО ===== -->
     <div class="hero-bg" style="background-image: url('images/background/hero-bg.jpg');"></div>
 
     <div class="hero-content">
@@ -1035,7 +1031,8 @@
   </section>
 
   <!-- ===== ABOUT ===== -->
-  <section class="about" id="about">
+  <section class="about has-bg" id="about">
+    <!-- ===== ФОНОВОЕ ФОТО ===== -->
     <div class="about-bg" style="background-image: url('images/background/about-bg.jpg');"></div>
     <div class="container">
       <div class="about-grid">
@@ -1046,6 +1043,9 @@
           </p>
         </div>
         <div class="about-image fade-in">
+          <!-- ===== MEDIA ZONE ===== -->
+          <!-- ДЛЯ РАЗРАБОТЧИКА: Вставить фото интерьера или эстетичную деталь зала ресторана сюда -->
+          <!-- <img src="images/interior/interior-1.jpg" alt="Интерьер ресторана Uaram" /> -->
           <div class="about-image-placeholder">Фото интерьера</div>
         </div>
       </div>
