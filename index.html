@@ -20,12 +20,18 @@
     }
 
     body {
-      background: #faf8f5;
+      background-color: #faf8f5;
+      background-image: url('images/background/common-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
       font-family: 'Inter', sans-serif;
       color: #1c1c1a;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      min-height: 100vh;
     }
 
     .container {
@@ -210,7 +216,7 @@
       position: relative;
       overflow: hidden;
       padding: 100px 0 60px;
-      background: #faf8f5;
+      background: transparent;
     }
 
     .hero-bg {
@@ -332,7 +338,7 @@
     .about {
       padding: 100px 0;
       position: relative;
-      background: #f4f1ec;
+      background: transparent;
       min-height: 500px;
       overflow: hidden;
     }
@@ -342,35 +348,10 @@
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      background: radial-gradient(ellipse at 20% 50%, rgba(74, 94, 63, 0.08) 0%, transparent 70%),
-                  radial-gradient(ellipse at 80% 50%, rgba(74, 94, 63, 0.05) 0%, transparent 60%),
-                  radial-gradient(ellipse at 50% 100%, rgba(74, 94, 63, 0.04) 0%, transparent 50%);
-    }
-
-    .about-decor-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%234a5e3f' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/svg%3E");
-      background-size: 60px 60px;
-    }
-
-    .about-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      pointer-events: none;
+      background: radial-gradient(ellipse at 20% 50%, rgba(74, 94, 63, 0.06) 0%, transparent 70%),
+                  radial-gradient(ellipse at 80% 50%, rgba(74, 94, 63, 0.03) 0%, transparent 60%),
+                  radial-gradient(ellipse at 50% 100%, rgba(74, 94, 63, 0.02) 0%, transparent 50%);
       display: none;
-    }
-
-    .about.has-bg .about-decor-bg {
-      display: none;
-    }
-    .about.has-bg .about-bg {
-      display: block;
     }
 
     .about .container {
@@ -402,8 +383,10 @@
       border-radius: 4px;
       overflow: hidden;
       min-height: 480px;
-      background: #d9d2c5;
+      background: rgba(217, 210, 197, 0.3);
+      backdrop-filter: blur(4px);
       position: relative;
+      border: 1px solid rgba(74, 94, 63, 0.06);
     }
 
     .about-image-placeholder {
@@ -418,7 +401,7 @@
       font-weight: 300;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      background: #d9d2c5;
+      background: rgba(217, 210, 197, 0.2);
     }
 
     .about-image img {
@@ -432,44 +415,10 @@
     /* ===== INTERIOR SLIDER ===== */
     .interior {
       padding: 80px 0;
-      background: #faf8f5;
+      background: transparent;
       position: relative;
       min-height: 500px;
       overflow: hidden;
-    }
-
-    .interior-decor-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background: radial-gradient(ellipse at 80% 30%, rgba(74, 94, 63, 0.06) 0%, transparent 60%),
-                  radial-gradient(ellipse at 20% 70%, rgba(74, 94, 63, 0.04) 0%, transparent 50%);
-    }
-
-    .interior-decor-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(74, 94, 63, 0.02) 0%, transparent 50%, rgba(74, 94, 63, 0.02) 100%);
-    }
-
-    .interior-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      pointer-events: none;
-      display: none;
-    }
-
-    .interior.has-bg .interior-decor-bg {
-      display: none;
-    }
-    .interior.has-bg .interior-bg {
-      display: block;
     }
 
     .interior .container {
@@ -499,6 +448,9 @@
       margin: 0 auto;
       overflow: hidden;
       border-radius: 4px;
+      background: rgba(250, 248, 245, 0.3);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(74, 94, 63, 0.06);
     }
 
     .slider-track {
@@ -510,7 +462,7 @@
     .slider-slide {
       min-width: 100%;
       height: 500px;
-      background: #d9d2c5;
+      background: rgba(217, 210, 197, 0.2);
       background-size: cover;
       background-position: center;
       flex-shrink: 0;
@@ -528,7 +480,7 @@
       font-weight: 300;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      background: #d9d2c5;
+      background: rgba(217, 210, 197, 0.2);
     }
 
     .slider-slide img {
@@ -549,7 +501,7 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #d9d2c5;
+      background: rgba(217, 210, 197, 0.5);
       border: none;
       cursor: pointer;
       transition: all 0.4s ease;
@@ -625,43 +577,10 @@
     /* ===== CONTACTS ===== */
     .contacts {
       padding: 80px 0;
-      background: #f4f1ec;
+      background: transparent;
       position: relative;
       min-height: 400px;
       overflow: hidden;
-    }
-
-    .contacts-decor-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background: radial-gradient(ellipse at 50% 50%, rgba(74, 94, 63, 0.05) 0%, transparent 70%);
-    }
-
-    .contacts-decor-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 0%, rgba(74, 94, 63, 0.02) 50%, transparent 100%);
-    }
-
-    .contacts-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      pointer-events: none;
-      display: none;
-    }
-
-    .contacts.has-bg .contacts-decor-bg {
-      display: none;
-    }
-    .contacts.has-bg .contacts-bg {
-      display: block;
     }
 
     .contacts .container {
@@ -721,8 +640,10 @@
       border-radius: 4px;
       overflow: hidden;
       min-height: 380px;
-      background: #d9d2c5;
+      background: rgba(217, 210, 197, 0.3);
+      backdrop-filter: blur(4px);
       position: relative;
+      border: 1px solid rgba(74, 94, 63, 0.06);
     }
 
     .contacts-map iframe {
@@ -736,7 +657,8 @@
     /* ===== FOOTER ===== */
     .footer {
       padding: 2.5rem 2.5rem;
-      background: #1c1c1a;
+      background: rgba(28, 28, 26, 0.85);
+      backdrop-filter: blur(12px);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -744,6 +666,7 @@
       font-weight: 300;
       font-size: 0.8rem;
       color: #faf8f5;
+      border-top: 1px solid rgba(250, 248, 245, 0.06);
     }
 
     .footer .footer-brand {
@@ -790,6 +713,12 @@
       }
       .slider-slide {
         height: 380px;
+      }
+      .about-image {
+        min-height: 380px;
+      }
+      .about-image-placeholder {
+        min-height: 380px;
       }
     }
 
@@ -1011,6 +940,7 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="hero">
+    <!-- ===== ФОНОВОЕ ФОТО (индивидуальное для Hero) ===== -->
     <div class="hero-bg" style="background-image: url('images/background/hero-bg.jpg');"></div>
 
     <div class="hero-content">
@@ -1031,9 +961,7 @@
   </section>
 
   <!-- ===== ABOUT ===== -->
-  <section class="about has-bg" id="about">
-    <!-- ===== ФОНОВОЕ ФОТО ===== -->
-    <div class="about-bg" style="background-image: url('images/background/about-bg.jpg');"></div>
+  <section class="about" id="about">
     <div class="container">
       <div class="about-grid">
         <div class="about-text fade-in">
@@ -1054,7 +982,6 @@
 
   <!-- ===== INTERIOR SLIDER ===== -->
   <section class="interior" id="interior">
-    <div class="interior-decor-bg"></div>
     <div class="container">
       <div class="interior-header fade-in">
         <h2>Интерьер <span class="accent-green">Uaram</span></h2>
@@ -1077,7 +1004,6 @@
 
   <!-- ===== CONTACTS ===== -->
   <section class="contacts" id="contacts">
-    <div class="contacts-decor-bg"></div>
     <div class="container">
       <div class="contacts-grid">
         <div class="contacts-info fade-in">
