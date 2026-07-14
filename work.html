@@ -15,48 +15,149 @@
     }
 
     body {
-      background: #faf8f5;
+      background-color: #faf8f5;
+      background-image: url('images/background/common-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
       font-family: 'Inter', sans-serif;
       color: #1c1c1a;
       line-height: 1.6;
+      padding-top: 80px;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ===== HERO WITH FULLSCREEN BACKGROUND ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 2.5rem 4rem;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .accent-green {
+      color: #4a5e3f;
+    }
+
+    /* ===== HEADER ===== */
+    .navbar {
+      padding: 1.4rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(250, 248, 245, 0.82);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(74, 94, 63, 0.06);
+      transition: all 0.4s ease;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+
+    .navbar.scrolled {
+      background: rgba(250, 248, 245, 0.94);
+      box-shadow: 0 4px 40px rgba(0,0,0,0.02);
+      padding: 0.8rem 2.5rem;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #4a5e3f;
+      letter-spacing: -0.02em;
+      transition: all 0.4s;
+    }
+
+    .navbar.scrolled .logo-text {
+      font-size: 1.4rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.8rem;
+      font-weight: 400;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      color: #3d3a35;
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: #4a5e3f;
+      transition: width 0.4s ease;
+    }
+
+    .nav-links a:hover {
+      color: #1c1c1a;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .burger-menu {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .burger-menu span {
+      display: block;
+      width: 26px;
+      height: 1.5px;
+      background: #1c1c1a;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ===== MAIN CONTENT ===== */
     .work-hero {
       position: relative;
-      min-height: 100vh;
+      min-height: 80vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 2.5rem;
+      padding: 0;
       overflow: hidden;
     }
 
-    .work-hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><rect width="1600" height="900" fill="%23faf8f5"/><circle cx="400" cy="200" r="300" fill="%23e8f0e6" opacity="0.25"/><circle cx="1200" cy="600" r="400" fill="%23e8f0e6" opacity="0.12"/><ellipse cx="800" cy="450" rx="600" ry="350" fill="%23dce8da" opacity="0.04"/></svg>');
-      background-size: cover;
-      background-position: center;
-    }
-
-    /* ДЛЯ РАЗРАБОТЧИКА: Раскомментировать и заменить url для фонового фото на всю страницу */
-    /* .work-hero-bg {
-      background-image: url('team-work.jpg');
-      opacity: 0.08;
-    } */
-
     .work-hero .container {
-      position: relative;
-      z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-      padding: 4rem 0;
+      padding: 3rem 2.5rem 2rem;
     }
 
     .back-link {
@@ -65,7 +166,7 @@
       text-decoration: none;
       font-size: 0.85rem;
       letter-spacing: 0.06em;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
       transition: color 0.3s;
     }
 
@@ -126,7 +227,9 @@
       border-radius: 4px;
       overflow: hidden;
       min-height: 400px;
-      background: #d9d2c5;
+      background: rgba(217, 210, 197, 0.3);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(74, 94, 63, 0.06);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -135,9 +238,6 @@
       font-weight: 300;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23d9d2c5"/><text x="50%" y="50%" font-family="Inter" font-size="11" fill="%234a5e3f" text-anchor="middle" dy=".3em" font-weight="300">Фото команды</text></svg>');
-      background-size: cover;
-      background-position: center;
     }
 
     .work-image img {
@@ -173,7 +273,8 @@
     /* ===== FOOTER ===== */
     .footer {
       padding: 2.5rem 2.5rem;
-      background: #1c1c1a;
+      background: rgba(28, 28, 26, 0.85);
+      backdrop-filter: blur(12px);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -182,6 +283,7 @@
       font-size: 0.8rem;
       color: #faf8f5;
       margin-top: auto;
+      border-top: 1px solid rgba(250, 248, 245, 0.06);
     }
 
     .footer .footer-brand {
@@ -211,6 +313,17 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 992px) {
+      .navbar {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+      .nav-links {
+        gap: 1.8rem;
+        font-size: 0.7rem;
+      }
+      .container {
+        padding: 1.5rem 1.5rem 3rem;
+      }
       .work-grid {
         gap: 2.5rem;
       }
@@ -220,15 +333,51 @@
     }
 
     @media (max-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
+
+      .navbar {
+        padding: 1rem 1.2rem;
+        background: rgba(250, 248, 245, 0.95);
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: rgba(250, 248, 245, 0.98);
+        backdrop-filter: blur(12px);
+        padding: 1.5rem 0;
+        gap: 1.2rem;
+        border-top: 1px solid rgba(74, 94, 63, 0.06);
+        margin-top: 0.8rem;
+        font-size: 0.85rem;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 0.3rem 0;
+      }
+
+      .burger-menu {
+        display: flex;
+      }
+
+      .logo-text {
+        font-size: 1.5rem;
+      }
+
       .work-hero {
-        padding: 0 1.2rem;
         min-height: auto;
-        padding-top: 80px;
-        padding-bottom: 60px;
+        padding: 0;
       }
 
       .work-hero .container {
-        padding: 1rem 0 2rem;
+        padding: 1rem 1.2rem 2rem;
       }
 
       .work-hero h1 {
@@ -266,6 +415,14 @@
     }
 
     @media (max-width: 480px) {
+      .navbar {
+        padding: 0.8rem 1rem;
+      }
+
+      .logo-text {
+        font-size: 1.2rem;
+      }
+
       .work-hero h1 {
         font-size: 1.8rem;
       }
@@ -294,11 +451,28 @@
 </head>
 <body>
 
-  <!-- ===== WORK HERO WITH FULLSCREEN BACKGROUND ===== -->
-  <section class="work-hero">
-    <!-- ===== ФОНОВОЕ ФОТО НА ВСЮ СТРАНИЦУ ===== -->
-    <div class="work-hero-bg"></div>
+  <!-- ===== NAVIGATION ===== -->
+  <header class="navbar" id="navbar">
+    <a href="index.html" class="logo-wrapper">
+      <span class="logo-text">Uaram</span>
+    </a>
 
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Главная</a>
+      <a href="menu.html">Меню</a>
+      <a href="index.html#about">О нас</a>
+      <a href="index.html#interior">Интерьер</a>
+      <a href="index.html#contacts">Контакты</a>
+      <a href="reviews.html">Отзывы</a>
+    </div>
+
+    <button class="burger-menu" id="burgerBtn" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <section class="work-hero">
     <div class="container">
       <a href="index.html" class="back-link">← На главную</a>
 
@@ -327,7 +501,8 @@
 
         <div class="work-image">
           <!-- ДЛЯ РАЗРАБОТЧИКА: Вставить фото команды или атмосферы работы -->
-          <!-- <img src="team-photo.jpg" alt="Команда Uaram" /> -->
+          <!-- <img src="images/work/team-photo.jpg" alt="Команда Uaram" /> -->
+          Фото команды Uaram
         </div>
       </div>
     </div>
@@ -342,6 +517,34 @@
       <a href="work.html">Работа у нас</a>
     </div>
   </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // ===== BURGER MENU =====
+    const burger = document.getElementById('burgerBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // ===== NAVBAR SCROLL =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > 30) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
 
 </body>
 </html>
