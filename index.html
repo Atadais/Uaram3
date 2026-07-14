@@ -336,12 +336,12 @@
 
     /* ===== ABOUT ===== */
     .about {
-      padding: 100px 0;
+      padding: 120px 0 100px;
       position: relative;
       background: transparent;
       min-height: 500px;
       overflow: hidden;
-      scroll-margin-top: 80px;
+      scroll-margin-top: 90px;
     }
 
     .about .container {
@@ -404,12 +404,12 @@
 
     /* ===== INTERIOR SLIDER ===== */
     .interior {
-      padding: 80px 0;
+      padding: 100px 0 80px;
       background: transparent;
       position: relative;
       min-height: 500px;
       overflow: hidden;
-      scroll-margin-top: 80px;
+      scroll-margin-top: 90px;
     }
 
     .interior .container {
@@ -567,7 +567,7 @@
 
     /* ===== CONTACTS ===== */
     .contacts {
-      padding: 80px 0;
+      padding: 100px 0 80px;
       background: rgba(74, 94, 63, 0.85);
       backdrop-filter: blur(8px);
       position: relative;
@@ -575,7 +575,7 @@
       overflow: hidden;
       border-top: 2px solid rgba(74, 94, 63, 0.2);
       border-bottom: 2px solid rgba(74, 94, 63, 0.2);
-      scroll-margin-top: 80px;
+      scroll-margin-top: 90px;
     }
 
     .contacts .container {
@@ -725,6 +725,15 @@
       .contacts-map {
         min-height: 350px;
       }
+      .about {
+        padding: 100px 0 80px;
+      }
+      .interior {
+        padding: 80px 0 60px;
+      }
+      .contacts {
+        padding: 80px 0 60px;
+      }
     }
 
     @media (max-width: 768px) {
@@ -831,15 +840,18 @@
       }
 
       .about {
-        padding: 60px 0;
+        padding: 80px 0 60px;
+        scroll-margin-top: 80px;
       }
 
       .interior {
-        padding: 60px 0;
+        padding: 60px 0 40px;
+        scroll-margin-top: 80px;
       }
 
       .contacts {
-        padding: 60px 0;
+        padding: 60px 0 40px;
+        scroll-margin-top: 80px;
       }
 
       .contacts-map {
@@ -905,6 +917,10 @@
       .footer {
         gap: 0.8rem;
         font-size: 0.7rem;
+      }
+
+      .about {
+        padding: 60px 0 40px;
       }
     }
 
